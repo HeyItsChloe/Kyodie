@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  border: blue;
+  border-style: solid;
+  justify-content: space-between;
+  align-items: center;
+  // ul{
+  //   display: flex;
+  // }
+}
+
+.search {
+  border: rosybrown;
+  border-style: solid;
+  select {
+    width: 30%;
+    padding-top: 10%;
+  }
+}
+
+.topCatContainer {
+  border: salmon;
+  border-style: solid;
+  text-align: center;
+}
+
+.resultsPage {
+  border: green;
+  border-style: solid;
+}
+
+.resultsContainer {
+  border: purple;
+  border-style: solid;
+  text-align: center;
+}
+
+.categoriesContainer {
+  border: salmon;
+  border-style: solid;
+  text-align: center;
+}
+
+.resultBoxes {
+  padding: 10px;
+  width:30%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+  overflow: auto;
+}
+
+.categoryBoxes {
+  padding: 10px;
+  width:30%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+  overflow: auto;
+}
