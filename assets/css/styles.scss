@@ -1,27 +1,83 @@
-.header {
-  display: flex;
-  border: blue;
-  border-style: solid;
-  justify-content: space-between;
-  align-items: center;
-  // ul{
-  //   display: flex;
-  // }
-}
-
-.search {
-  border: rosybrown;
-  border-style: solid;
-  select {
-    width: 30%;
-    padding-top: 10%;
+.pageHeader {
+  font-family: Impact, Charcoal, sans-serif;
+  color: black;
+  ul {
+    top: 10;
+    position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 97.5%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  li {
+    float: right;
+    padding: 0px 5px;
   }
 }
 
+.search {
+  padding: 85px 0px 150px 0px;
+  background-color: #6DABA3;
+  .searchFields {
+    //padding-top: 260px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    padding: 250px 10px 10px 10px;
+    background-image:  url("../images/working_together.png");
+    background-color: #cccccc;
+    //min-height: 100%;
+    select {
+      width: 20%;
+      height: 35px;
+      background-color: transparentize($color: #001a33, $amount: .2);
+      -webkit-border-radius: 0;
+      border-radius: 0px; 
+      border: none;
+      outline: 1px inset #001a33;
+      outline-offset: -1px;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
+    } 
+    .input1 {
+      width: 45%;
+      height: 35px;
+      background-color: transparentize($color: #001a33, $amount: .2);
+      border: none;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
+      border-right: white;
+    }
+    .input2 {
+      width: 10%;
+      height: 35px;
+      background-color: transparentize($color: #001a33, $amount: .2);
+      border: none;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
+    }
+  }
+}
+
+.header {
+  font-family: "Arial Black", Gadget, sans-serif;
+  display: flex;
+  background-color: ffb3bf;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:10px;
+  padding: 10px 10px 0px 10px;
+}
+
 .topCatContainer {
-  border: salmon;
-  border-style: solid;
+  background-color: ffb3bf;
+  padding: 10px 10px 10px 10px;
   text-align: center;
+}
+
+.categoryBoxes {
+  background-color: white;
+  margin-bottom: 20px;
+  //padding: 0px 60px 10px 0px;
+  width:30%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+  overflow: auto;
 }
 
 .resultsPage {
@@ -48,9 +104,4 @@
   overflow: auto;
 }
 
-.categoryBoxes {
-  padding: 10px;
-  width:30%;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
-  overflow: auto;
-}
+

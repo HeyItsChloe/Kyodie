@@ -2,6 +2,8 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import '../css/styles.scss'; /* added here so that webpack can bundle styles */
+import '../images/working_together.png'
+import '../images/working_together_2.png'
 
 import App from '../../Components/App.jsx';
 import ResultsPage from '../../Components/Results/ResultsPage.jsx';

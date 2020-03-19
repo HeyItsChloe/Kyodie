@@ -7,7 +7,7 @@ class CategoriesContainer extends Component {
         return (
             <div>
                 <div className='header'>
-                    <h1>Browse The Top Categories</h1>
+                    <h3>browse top categories</h3>
                 </div>
                 <div>
                     <Categories/>

@@ -7,8 +7,8 @@ const app = express();
 const PORT = 3000;
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 /* parsers */
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json())
+// app.use(bodyparser.urlencoded({ extended: true }));
+// app.use(bodyparser.json())
 
 
 
@@ -16,6 +16,8 @@ app.use(bodyparser.json())
 /* ---------------------------------------------------- ROUTES ---------------------------------------------------- */
 /* statically serve everything in the build folder on the route '/build' */
 app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use('/images', express.static(path.join(__dirname, '../assets/images')));
+
 /* serve the `index.html` file on the route '/' */
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'))

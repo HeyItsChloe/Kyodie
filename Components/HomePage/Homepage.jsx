@@ -6,7 +6,7 @@ class Homepage extends Component {
     render () {
         return (
             <div>
-                <div className="header">
+                <div className="pageHeader">
                     <h1>KYODIE</h1>
                     <ul className="menuButtons">
                         <Link to={'/'}> <li>Home</li> </Link>

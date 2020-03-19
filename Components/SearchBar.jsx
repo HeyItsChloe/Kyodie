@@ -73,6 +73,29 @@ class SearchBar extends Component {
                 //res.json() //dont need this?
                 let data = res.data.businesses
                 let datum = []
+                /**
+                 * here data is an array of objects
+                 * need to push the values of the keys that I want into an array (objects can not render to the dom, arrays can)
+                 [
+                    0: {
+                        name: "State Farm Auto Insurance"
+                        address: ""
+                        city: ""
+                        state: ""
+                        zip: ""
+                        latitude: ""
+                        longitude: ""
+                        url: ""
+                        score: ""
+                        verified: "No"
+                        image: ""
+                        categoryName: "Insurance"
+                        categoryID: "7.13"
+                        distance: {miles: ""}
+                        type: "Sponsored"
+                     },
+                 ]
+                */
                 for (let i=0; i<data.length; i++){
                     datum.push([
                     res.data.businesses[i].name,
@@ -90,8 +113,7 @@ class SearchBar extends Component {
                     res.data.businesses[i].distance.miles,
                     ])
                 }   
-
-                console.log('datum', datum)
+                /* need to filter out all values that are "undefined" */
                 let filteredDatum = datum.filter(x => x !== undefined)
 
                 /* need to update state with business list from get request so i can call it in the render */
@@ -114,13 +136,17 @@ class SearchBar extends Component {
         return (
             <div>
             <div className="search">
-                <label>Search For What You Need</label><br></br>
-                <select>{topCatData.map((x,y) => <option key={y}>{x}</option>)}</select>
-                {/* <select>{subCatData.map((x,y) => <option key={y}>{x}</option>)}</select>
-                <select>{locationData.map((x,y) => <option key={y}>{x}</option>)}</select> */}
-                <input id='zip' placeholder='Enter Zip Code'></input>
-                <input id='keyword' placeholder='Enter Keyword'></input>
-                <button  id="searchSubmit" onClick={this.handleClick}>Search</button>
+                <div className='searchFields'>
+                    <img className='searchImg' src={require('../assets/images/working_together_2.png')} style={{width:'100px'}}></img><br></br>
+                    <label>Search For What You Need</label><br></br>
+                    <input className='input1' id='keyword' placeholder='Enter Keyword'></input>
+                    <select>{topCatData.map((x,y) => <option key={y}>{x}</option>)}</select>
+                    {/* <select>{subCatData.map((x,y) => <option key={y}>{x}</option>)}</select>
+                    <select>{locationData.map((x,y) => <option key={y}>{x}</option>)}</select> */}
+                    <input className='input2' id='zip' placeholder='Enter Zip Code'></input>
+                    
+                    <button  id="searchSubmit" onClick={this.handleClick}>Search</button>
+                </div>
             </div>
 
             <div>
