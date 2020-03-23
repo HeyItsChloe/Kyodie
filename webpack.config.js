@@ -10,7 +10,7 @@ module.exports = {
     module: { 
         rules: [
             {
-            test: /\.jsx?/, 
+            test: /\.jsx?$/, 
             exclude: /(node_modules)/,
             use: {
                 loader: 'babel-loader', 
@@ -19,33 +19,27 @@ module.exports = {
                 }
             }
             },
-
             {
             test: /\.s?css$/,
             use: ['style-loader', 'css-loader', 'sass-loader']
             },
-            // {
-            //     test: /\.(jpe?g|png|gif|svg)$/i,
-            //     loaders: [
-            //       'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-            //       'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-            //     ]
-            // }
-            // {
-            //     include: SRC,
-            //     test: /\.(eot|gif|otf|png|svg|ttf|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            //     use: [ 'file-loader' ],
-            //   },
             {
             test: /\.(png|jpg|gif)$/i,
             use: [{
-                //loader: "file?name=[path][name].[ext]",
-                loader: 'url-loader',
+                loader: "file-loader",
+                //loader: 'url-loader',
                 options: {
-                    limit: 8192,
-                    //name: '[path][name].[ext]'
+                    //limit: 8192,
+                    regExp: /\/([a-z0-9]+)\/[a-z0-9]+\.png$/i,
+                    /* file loder generate w/ commonJS module syntax instead of ES module. to enable that, set ES to false */
+                    esModule: false,
+                    name: '[path][name].[ext]'
                 }
                 }]
+            },
+            {
+            test: /\.json$/,
+            loader: 'json-loader'
             }
         ],
     }, 

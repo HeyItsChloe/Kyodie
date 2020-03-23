@@ -4,9 +4,4 @@ export const actionTypes = {
 
 export const addBusiness = () => ({
     type: actionTypes.ADD_BUSINESS,
-    // payload: {
-    //     bName: bName,
-    //     bDescription: bDescription,
-    //     bLocation: bLocation
-    // }
 })

@@ -1,9 +1,13 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import '../css/styles.scss'; /* added here so that webpack can bundle styles */
+
+/* added here so that webpack can bundle assets */
+import '../css/styles.scss'; 
 import '../images/working_together.png'
 import '../images/working_together_2.png'
+//import '../data/topCategories.json'
 
 import App from '../../Components/App.jsx';
 import ResultsPage from '../../Components/Results/ResultsPage.jsx';
@@ -12,8 +16,8 @@ import CategoryDetails from '../../Components/Categories/CategoryDetails.jsx';
 import About from '../../Components/About.jsx';
 import Contact from '../../Components/Contact.jsx';
 import store from '../../Redux/store.js'
-import { Provider } from 'react-redux';
-import { render } from 'react-dom';
+
+
 
 
 const routing = (

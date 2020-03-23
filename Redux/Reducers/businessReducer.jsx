@@ -29,7 +29,6 @@
     categoryID: '',
     type: '',
     distance_miles: '',
-    description: '',    
  })
 
 //  const addBusiness = ({

@@ -9,21 +9,21 @@ class ResultsContainer extends Component {
          * here, data is an array of arrays.
          * we pass each index of data to results
           [
-            [
-                0: "Father & Son Insurance"
-                1: "1000 Turk Hill Rd"
-                2: "Fairport"
-                3: "NY"
-                4: "14450-8755"
-                5: "43.095314"
-                6: "-77.431131"
-                7: ""
-                8: ""
-                9: undefined
-                10: undefined
-                11: "Organic"
-                12: "0.4731"
-            ], 
+            0: [
+                "Father & Son Insurance"
+                "1000 Turk Hill Rd"
+                "Fairport"
+                "NY"
+                "14450-8755"
+                "43.095314"
+                "-77.431131"
+                ""
+                ""
+                undefined
+                1undefined
+                1"Organic"
+                1"0.4731"
+                ], 
           ]
          */
         let results = this.props.propsPassed.data;

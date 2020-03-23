@@ -9,19 +9,24 @@ app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 /* parsers */
 // app.use(bodyparser.urlencoded({ extended: true }));
 // app.use(bodyparser.json())
+const categoriesController =  require('./Controllers/categories.js')
 
 
 
 
 /* ---------------------------------------------------- ROUTES ---------------------------------------------------- */
-/* statically serve everything in the build folder on the route '/build' */
+/* statically serve everything in '(X)' folder on the route '/(X)' */
 app.use('/build', express.static(path.join(__dirname, '../build')));
-app.use('/images', express.static(path.join(__dirname, '../assets/images')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 /* serve the `index.html` file on the route '/' */
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'))
 });
+
+app.get('/categories', categoriesController.getCategories, (req, res) => {
+    res.status(200).json({topCategories : res.locals.topCategories})
+})
 
 
 

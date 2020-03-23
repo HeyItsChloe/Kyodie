@@ -6,68 +6,56 @@ import CategoriesContainer from './Categories/CategoriesContainer.jsx';
 import * as action from '../Redux/Actions/actions.jsx';
 
 
+/* invoked each time the store updates. passed the current state of the Redux store */
+// const mapStateToProps = (state) => ({
+// 	state: state
+// });
+
+const mapDispatchToProps = {
+	businesList : this.state.data
+}
+
 class SearchBar extends Component {
     constructor (props) {
         super(props) 
         this.state = {
-            // categoryName: [],
-            // name: [],
             topCatArray: [],
-            //subCatArray: [],
-            //locationArray: [],
-            //selectedAuthor: '',
             isSearched: false,
-            data:[]
+            data: []
         }
         this.handleClick = this.handleClick.bind(this)
         this.getResults = this.getResults.bind(this)
         this.getDropDown = this.getDropDown.bind(this)
     }
 
-    componentDidMount () {
-        //this.getDropDown()
+
+    componentWillMount () {
+       this.getDropDown()
     }
 
     handleClick (event) {
         this.getResults()
-        //this.setState({isSearched: true})
-        //event.preventDefault()
+        event.preventDefault()
     }
 
-    getDropDown () {
-        console.log('getting to dropdown')
-        const url = `https://trialapi.soleo.com/businesses?Keyword=insurance&PostalCode=14450&APIKey=e56x4kzx7bh54p8z6tj53t48`
- 
-            axios.get (url)
-            .then(res => {
-                console.log('res in search bar', res.data)
-
-                let data = res.data.businesses
-                let topCat = []
-                let subCat = []
-                //let location = []
-                for (let i=0; i<data.length; i++){
-                    topCat.push(data[i].author)
-                    subCat.push(data[i].quote)
-                    //location.push(data[i].location)
-                }
-                /* need to update state with business list from get request so i can call it in the render */
-                this.setState({
-                    topCatArray: topCat,
-                    subCatArray: subCat,
-                    //locationArray: location 
-                })
+    getDropDown () { 
+        axios.get ('/categories')
+        .then(res => {
+            let topCatData = res.data.topCategories
+            this.setState({
+                topCatArray: topCatData
             })
-            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
     }
 
     getResults () {
-        let category = 'insurance'
+        let category = document.getElementById('category').value
         let keyword = document.getElementById('keyword').value
         let postalCode = document.getElementById('zip').value
-
         const fetching =(category, keyword, postalCode) => { //why must this be an arrow function??? ('this' context)
-            axios.get (`https://trialapi.soleo.com/businesses?Category=${category}&Keyword=${keyword}&PostalCode=${postalCode}&APIKey=e56x4kzx7bh54p8z6tj53t48`) //why cant i use fetch / cors???
+            let url = `https://trialapi.soleo.com/businesses?Category=${category}&Keyword=${keyword}&PostalCode=${postalCode}&APIKey=e56x4kzx7bh54p8z6tj53t48`
+            axios.get (url) //why cant i use fetch / cors???
             .then(res => {
                 console.log('res in get results search bar', res.data.businesses)
                 //res.json() //dont need this?
@@ -122,6 +110,7 @@ class SearchBar extends Component {
                 })
             })
             .then(() => this.setState({isSearched: true}))
+            //.then(() => console.log('the data', this.state.data))
             .catch(err => console.log(err))
         }
         fetching(category, keyword, postalCode )
@@ -129,20 +118,20 @@ class SearchBar extends Component {
         
     render () {
         const isSearched = this.state.isSearched;
-        let topCatData = this.state.topCatArray;
-        // let subCatData = this.state.subCatArray;
-        // let locationData = this.state.locationArray; 
+        let topCatInfo = this.state.topCatArray;
 
         return (
             <div>
-            <div className="search">
+            <div className="search">   
+                <img className='searchImg' 
+                    src={require('/Users/c.aribo/Desktop/kyodie-backend/assets/images/working_together.png')} 
+                    style={{width:'75%', height: '90%'}}>
+                </img><br></br>
+
                 <div className='searchFields'>
-                    <img className='searchImg' src={require('../assets/images/working_together_2.png')} style={{width:'100px'}}></img><br></br>
-                    <label>Search For What You Need</label><br></br>
+                    <h3>Search For What You Need</h3>
                     <input className='input1' id='keyword' placeholder='Enter Keyword'></input>
-                    <select>{topCatData.map((x,y) => <option key={y}>{x}</option>)}</select>
-                    {/* <select>{subCatData.map((x,y) => <option key={y}>{x}</option>)}</select>
-                    <select>{locationData.map((x,y) => <option key={y}>{x}</option>)}</select> */}
+                    <select id='category'>{topCatInfo.map((x,y) => <option  value={x} key={y}>{x}</option>)}</select>
                     <input className='input2' id='zip' placeholder='Enter Zip Code'></input>
                     
                     <button  id="searchSubmit" onClick={this.handleClick}>Search</button>
@@ -159,4 +148,14 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar
+//export default SearchBar
+/**
+ * The connect() method takes two arguments: mapStateToProps and mapDispatchToProps 
+ * and returns a function that can be used to connect the Redux store with a component.
+ * (searchBar) invokes the connect
+ */
+export default connect(
+	null,
+	mapDispatchToProps
+)(SearchBar);
+
