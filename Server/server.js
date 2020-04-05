@@ -7,17 +7,19 @@ const app = express();
 const PORT = 3000;
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 /* parsers */
-// app.use(bodyparser.urlencoded({ extended: true }));
-// app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json())
 /* required routers */
-//const forumRouter = require('../Routes/forumRouter.js')
+const forumRouter = require('../Routes/forumRouter.js')
 /* required controllers */
 const categoriesController =  require('./Controllers/categories.js')
-const commentController = require('./Controllers/commentController.js')
+
+
 
 
 /* ---------------------------------------------------- ROUTERS ---------------------------------------------------- */
-//app.use('/forum', forumRouter)
+//mounts the router modules on a path in the main server file
+app.use('/forum', forumRouter)
 
 
 
@@ -38,27 +40,14 @@ app.get('/categories', categoriesController.getCategories, (req, res) => {
 
 
 
-app.get('/forum', commentController.getComments, (req, res, next) => {
-    console.log('in get forum')
-    res.status(200).json()
-})
-
-app.post('/forum', commentController.postComments, (req, res) => {
-    console.log('in post /forum in server')
-    res.status(200).json({})
-})
-
-
 
 /* ---------------------------------------------------- ERROR HANDLERS ---------------------------------------------------- */
-app.use('*', (req, res, next, err) => {
+app.use('*', (req, res, err, next) => {
     console.log('err / catch all', err);
-    res.status(404);
+    //res.status(404);
 })
 
 app.use((err, req, res, next) => {
     console.log('global', err);
     res.status(500).send('Internal Server Error');
 })
-
-
