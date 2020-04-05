@@ -1,19 +1,8 @@
 import  React, { Component } from 'react';
 import axios from 'axios'
-import { connect } from 'react-redux';
 import ResultsPage from './Results/ResultsPage.jsx'
-import CategoriesContainer from './Categories/CategoriesContainer.jsx';
-import * as action from '../Redux/Actions/actions.jsx';
+//import CategoriesContainer from './Categories/CategoriesContainer.jsx';
 
-
-/* invoked each time the store updates. passed the current state of the Redux store */
-// const mapStateToProps = (state) => ({
-// 	state: state
-// });
-
-const mapDispatchToProps = {
-	businesList : this.state.data
-}
 
 class SearchBar extends Component {
     constructor (props) {
@@ -110,7 +99,6 @@ class SearchBar extends Component {
                 })
             })
             .then(() => this.setState({isSearched: true}))
-            //.then(() => console.log('the data', this.state.data))
             .catch(err => console.log(err))
         }
         fetching(category, keyword, postalCode )
@@ -119,17 +107,18 @@ class SearchBar extends Component {
     render () {
         const isSearched = this.state.isSearched;
         let topCatInfo = this.state.topCatArray;
+        let theData = this.state.data
 
         return (
             <div>
             <div className="search">   
                 <img className='searchImg' 
                     src={require('/Users/c.aribo/Desktop/kyodie-backend/assets/images/working_together.png')} 
-                    style={{width:'75%', height: '90%'}}>
+                    style={{width:'80%', height: '96%'}}>
                 </img><br></br>
 
                 <div className='searchFields'>
-                    <h3>Search For What You Need</h3>
+                    <h3>Search For Any Local Business</h3>
                     <input className='input1' id='keyword' placeholder='Enter Keyword'></input>
                     <select id='category'>{topCatInfo.map((x,y) => <option  value={x} key={y}>{x}</option>)}</select>
                     <input className='input2' id='zip' placeholder='Enter Zip Code'></input>
@@ -141,21 +130,21 @@ class SearchBar extends Component {
             <div>
                 {isSearched ? (
                     <ResultsPage props={this.state}/>
-                 ): <CategoriesContainer/> }
+                 ): null }
             </div>
             </div>
         )
     }
 }
 
-//export default SearchBar
+export default SearchBar
 /**
  * The connect() method takes two arguments: mapStateToProps and mapDispatchToProps 
  * and returns a function that can be used to connect the Redux store with a component.
  * (searchBar) invokes the connect
  */
-export default connect(
-	null,
-	mapDispatchToProps
-)(SearchBar);
+// export default connect(
+// 	null,
+// 	mapDispatchToProps
+// )(SearchBar);
 
