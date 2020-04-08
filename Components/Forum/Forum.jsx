@@ -44,6 +44,10 @@ class Forum extends Component {
             this.setState({
                 commentsByName: both
             })
+
+            // if (document.getElementById('replyText') !== null){
+                
+            // }
         })
     }
 
@@ -64,12 +68,15 @@ class Forum extends Component {
     postReply () {
         let replyText = document.getElementById('replyText').value
         let replyName = document.getElementById('replyName').value
+        //let repliedID = document.getElementById('index').value
+
         fetch('/forum', {
             method: 'POST',
             headers: {'Content-Type': 'applcation/json'},
             body: JSON.stringify({
                 'name': replyName,
-                'comment': replyText
+                'comment': replyText,
+                //'repliedID': repliedID
             })
         })
         .then(() => this.getComments())
@@ -84,7 +91,7 @@ class Forum extends Component {
                 <h1>Post In The Forum Here</h1>
                 <div className='commentsByName'>
                     {commentsAndNames.map((both, index) => 
-                    <div id='both' value={both} key={index}>
+                    <div value={both} id={index}>
                         {both}
                         <button onClick={this.deleteComment}>Delete</button>
                         <button id='button' key={index} onClick={this.replyClicked}>Reply</button>

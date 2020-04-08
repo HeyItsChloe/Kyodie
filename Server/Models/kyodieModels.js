@@ -36,16 +36,38 @@
 .then(() => console.log('Connected to Mongo'))
 .catch(err => console.log(err));
 
+/* Forum Comment Schema */
 const Schema = mongoose.Schema
-
-const forumSchema = new Schema({
+const commentSchema = new Schema({
     name: String,
     comment: String,
+    // user: [{
+    //     userName: String,
+    //     id: {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'user'
+    //     }
+    // }]
 })
+const Comment = mongoose.model('comment', commentSchema)
 
-const Forum = mongoose.model('forum', forumSchema)
+/* Kyodie User Schema */
+const userSchema = new Schema({
+    userName: String,
+    password: String,
+    // comments: [{
+    //     comment: String,
+    //     id: {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'comment'
+    //     }
+    // }]
+})
+const User = mongoose.model('user', userSchema)
+
 
 module.exports = {
-    Forum
+    Comment,
+    User
 }
 

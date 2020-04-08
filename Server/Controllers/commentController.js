@@ -6,13 +6,13 @@
  * DELETE
  *  - delete comment by iD
  */
-const model = require('../Models/forumModel.js')
+const model = require('../Models/kyodieModels.js')
 
 const commentController = {}
 
 commentController.getComments = (req, res, next) => {
     //console.log('res in get', res)
-    model.Forum.find({}, (err, comments) => {
+    model.Comment.find({}, (err, comments) => {
         /* Logging req.body here is undefined b.c i named my parameter 'comment' */
         //console.log('comments in getComments', comments)
         if (err){
@@ -29,7 +29,7 @@ commentController.getComments = (req, res, next) => {
 
 commentController.postComments = (req, res, next) => {
     //console.log('req.body in postComments', req.body)
-    model.Forum.create({name: req.body.name, comment: req.body.comment}, (err, comment) => {
+    model.Comment.create({name: req.body.name, comment: req.body.comment}, (err, comment) => {
         if (err) {
             return next({
                 err: 'err in postComments'
@@ -59,7 +59,7 @@ commentController.deleteComments = (req, res, next) => {
     const id = req.params.id
     //console.log('req.params.id', req.params.id)
 
-    model.Forum.deleteOne({id: req.params.id}, (err, comments) => {
+    model.Comment.deleteOne({id: req.params.id}, (err, comments) => {
         if (err){
             console.log(err)
         }

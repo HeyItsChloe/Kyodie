@@ -12,6 +12,7 @@ const express = require('express')
 const router = express.Router() //class to create modular, mountable route handlers
 
 const commentController = require('../Server/Controllers/commentController.js')
+const userController = require('../Server/Controllers/userController.js')
 
 
 /* define the forum homepage routes */

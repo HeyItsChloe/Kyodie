@@ -11,6 +11,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json())
 /* required routers */
 const forumRouter = require('../Routes/forumRouter.js')
+const userRouter = require('../Routes/userRouter.js')
 /* required controllers */
 const categoriesController =  require('./Controllers/categories.js')
 
@@ -19,6 +20,7 @@ const categoriesController =  require('./Controllers/categories.js')
 
 /* ---------------------------------------------------- ROUTERS ---------------------------------------------------- */
 //mounts the router modules on a path in the main server file
+app.use('/user', userRouter)
 app.use('/forum', forumRouter)
 
 
