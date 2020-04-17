@@ -1,14 +1,13 @@
+/* Modules */
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-
-/* added here so that webpack can bundle assets */
+/* Assets */
 import '../css/styles.scss'; 
 import '../images/working_together.png'
 import '../images/working_together_2.png'
-//import '../data/topCategories.json'
-
+/* Components */
 import App from '../../Components/App.jsx';
 import ResultsPage from '../../Components/Results/ResultsPage.jsx';
 import ResultsDetails from '../../Components/Results/ResultsDetails.jsx';
@@ -16,11 +15,10 @@ import CategoryDetails from '../../Components/Categories/CategoryDetails.jsx';
 import About from '../../Components/About.jsx';
 import Contact from '../../Components/Contact.jsx';
 import Forum from '../../Components/Forum/Forum.jsx';
+import Login from '../../Components/Auth/Login.jsx';
 import store from '../../Redux/store.js'
 
-
-
-
+/* Hang App to Root Element */
 const routing = (
     <Router>
       <div>
@@ -30,7 +28,8 @@ const routing = (
         <Route path="/searchSubmit" component={ResultsPage} />
         <Route path="/resultsDetails" component={ResultsDetails} />
         <Route path="/categoryDetails" component={CategoryDetails} />
-        <Route path="/forum" component={Forum} />
+        <Route path="/api/forum/:id" component={Forum} />
+        <Router path="/login" component={Login} />
       </div>
     </Router>
   )

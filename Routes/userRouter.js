@@ -10,6 +10,8 @@ router.post('/', userController.createUsers, (req, res) => {
     res.status(200).json({})
 })
 
-
+router.post('/login', userController.verifyUser, (req, res) => {
+    res.redirect('/:id')
+})
 
 module.exports = router

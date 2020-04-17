@@ -27,9 +27,28 @@ commentController.getComments = (req, res, next) => {
     })
 } 
 
+commentController.getCommentsByUserId = (req, res, next) => {
+    const { id } = req.params
+
+    model.Comment.find({user_id: id}).exec()
+    .then((data, err) => {
+        if (err){
+            return next({
+                err: 'err in getCommnets'
+            })
+        } else {
+            res.locals.userComments = data
+            return next()
+        }    
+    })
+}
+
 commentController.postComments = (req, res, next) => {
     //console.log('req.body in postComments', req.body)
-    model.Comment.create({name: req.body.name, comment: req.body.comment}, (err, comment) => {
+    const { id } = req.params
+    console.log('id', req.params.id)
+
+    model.Comment.create({name: req.body.name, comment: req.body.comment, user_id: id}, (err, comment) => {
         if (err) {
             return next({
                 err: 'err in postComments'

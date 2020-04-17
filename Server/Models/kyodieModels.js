@@ -22,6 +22,7 @@
  * Set up schema
  * Create a model
  * Export models in obj to be used in controller
+ * https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents/
  */
 
  const mongoose = require('mongoose')
@@ -41,13 +42,12 @@ const Schema = mongoose.Schema
 const commentSchema = new Schema({
     name: String,
     comment: String,
-    // user: [{
-    //     userName: String,
-    //     id: {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'user'
-    //     }
-    // }]
+    //userName: String,
+    user_id: { 
+            type: Schema.Types.ObjectId,
+            ref: 'user'
+        
+    }
 })
 const Comment = mongoose.model('comment', commentSchema)
 

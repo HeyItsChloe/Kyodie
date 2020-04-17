@@ -1,8 +1,6 @@
 import  React, { Component } from 'react';
 import axios from 'axios'
 import ResultsPage from './Results/ResultsPage.jsx'
-//import CategoriesContainer from './Categories/CategoriesContainer.jsx';
-
 
 class SearchBar extends Component {
     constructor (props) {
@@ -10,13 +8,11 @@ class SearchBar extends Component {
         this.state = {
             topCatArray: [],
             isSearched: false,
-            data: []
         }
         this.handleClick = this.handleClick.bind(this)
         this.getResults = this.getResults.bind(this)
         this.getDropDown = this.getDropDown.bind(this)
     }
-
 
     componentWillMount () {
        this.getDropDown()
@@ -42,37 +38,12 @@ class SearchBar extends Component {
         let category = document.getElementById('category').value
         let keyword = document.getElementById('keyword').value
         let postalCode = document.getElementById('zip').value
-        const fetching =(category, keyword, postalCode) => { //why must this be an arrow function??? ('this' context)
+        const fetching =(category, keyword, postalCode) => { 
             let url = `https://trialapi.soleo.com/businesses?Category=${category}&Keyword=${keyword}&PostalCode=${postalCode}&APIKey=e56x4kzx7bh54p8z6tj53t48`
-            axios.get (url) //why cant i use fetch / cors???
+            axios.get (url)
             .then(res => {
-                console.log('res in get results search bar', res.data.businesses)
-                //res.json() //dont need this?
                 let data = res.data.businesses
                 let datum = []
-                /**
-                 * here data is an array of objects
-                 * need to push the values of the keys that I want into an array (objects can not render to the dom, arrays can)
-                 [
-                    0: {
-                        name: "State Farm Auto Insurance"
-                        address: ""
-                        city: ""
-                        state: ""
-                        zip: ""
-                        latitude: ""
-                        longitude: ""
-                        url: ""
-                        score: ""
-                        verified: "No"
-                        image: ""
-                        categoryName: "Insurance"
-                        categoryID: "7.13"
-                        distance: {miles: ""}
-                        type: "Sponsored"
-                     },
-                 ]
-                */
                 for (let i=0; i<data.length; i++){
                     datum.push([
                     res.data.businesses[i].name,
@@ -90,10 +61,7 @@ class SearchBar extends Component {
                     res.data.businesses[i].distance.miles,
                     ])
                 }   
-                /* need to filter out all values that are "undefined" */
                 let filteredDatum = datum.filter(x => x !== undefined)
-
-                /* need to update state with business list from get request so i can call it in the render */
                 this.setState({
                     data: filteredDatum
                 })
@@ -107,8 +75,7 @@ class SearchBar extends Component {
     render () {
         const isSearched = this.state.isSearched;
         let topCatInfo = this.state.topCatArray;
-        let theData = this.state.data
-
+        
         return (
             <div>
             <div className="search">   
@@ -138,13 +105,4 @@ class SearchBar extends Component {
 }
 
 export default SearchBar
-/**
- * The connect() method takes two arguments: mapStateToProps and mapDispatchToProps 
- * and returns a function that can be used to connect the Redux store with a component.
- * (searchBar) invokes the connect
- */
-// export default connect(
-// 	null,
-// 	mapDispatchToProps
-// )(SearchBar);
 

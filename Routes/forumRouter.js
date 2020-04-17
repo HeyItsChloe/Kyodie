@@ -16,17 +16,17 @@ const userController = require('../Server/Controllers/userController.js')
 
 
 /* define the forum homepage routes */
-router.get('/', commentController.getComments, (req, res, next) => {
+router.get('/:id', commentController.getComments , (req, res, next) => { //(with /:_id)
     //console.log('in get forum')
     res.status(200).json(res.locals.comment)
 })
 
-router.post('/', commentController.postComments, (req, res, next) => {
+router.post('/:id', commentController.postComments, (req, res, next) => { //(with /:_id)
     //console.log('req in post /forum in server', req.body)
     res.status(200).json({})
 })
 
-router.delete('/', commentController.deleteComments, (req, res, next) => { //why no params id here?
+router.delete('/', commentController.deleteComments, (req, res, next) => { //why no params id here? (with /:_id)
     //console.log('in delete in forumRouter', req.body)
     res.status(200).json(res.locals.comments)
 })

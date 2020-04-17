@@ -27,7 +27,7 @@ class Forum extends Component {
 
     /* GET all comments from DB and diplay them */
     getComments () {
-        fetch('/forum', {
+        fetch('/api/forum/:id', {
             method: 'GET',
             headers: {
                 'Content-Type' : 'application/json'
@@ -56,7 +56,7 @@ class Forum extends Component {
         let newText = document.getElementById('inputText').value
         let newName = document.getElementById('inputName').value
 
-        fetch('/forum', {
+        fetch('/api/forum/:id', {
             method: 'POST', 
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({'name': newName, 'comment': newText})
@@ -70,7 +70,7 @@ class Forum extends Component {
         let replyName = document.getElementById('replyName').value
         //let repliedID = document.getElementById('index').value
 
-        fetch('/forum', {
+        fetch('/api/forum/:id', {
             method: 'POST',
             headers: {'Content-Type': 'applcation/json'},
             body: JSON.stringify({
