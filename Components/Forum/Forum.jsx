@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Forum extends Component {
     constructor(props){
-        super(props) //w.o super props, no this
+        super(props) 
         this.state = {
             commentsByName: [],
             replyButtonClicked: false,
@@ -34,20 +34,14 @@ class Forum extends Component {
             }
         })
         .then(res => res.json())
-        //.then(res => console.log('res', res))
         .then(res => {
             let both= []
             for (let i=0; i<res.length; i++){
                 both.push([res[i].name, ' ', res[i].comment])
             }
-
             this.setState({
                 commentsByName: both
             })
-
-            // if (document.getElementById('replyText') !== null){
-                
-            // }
         })
     }
 

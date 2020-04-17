@@ -1,33 +1,16 @@
-/** SET UP ROUTER
- * require express and set up router
- * import controllers
- * add routes  
- *      - Get comments
- *      - POST comments
- *      - DELETE comments
- * export router
- */
-
 const express = require('express')
-const router = express.Router() //class to create modular, mountable route handlers
-
+const router = express.Router() 
 const commentController = require('../Server/Controllers/commentController.js')
-const userController = require('../Server/Controllers/userController.js')
 
-
-/* define the forum homepage routes */
-router.get('/:id', commentController.getComments , (req, res, next) => { //(with /:_id)
-    //console.log('in get forum')
+router.get('/:id', commentController.getComments , (req, res, next) => { 
     res.status(200).json(res.locals.comment)
 })
 
-router.post('/:id', commentController.postComments, (req, res, next) => { //(with /:_id)
-    //console.log('req in post /forum in server', req.body)
+router.post('/:id', commentController.postComments, (req, res, next) => { 
     res.status(200).json({})
 })
 
-router.delete('/', commentController.deleteComments, (req, res, next) => { //why no params id here? (with /:_id)
-    //console.log('in delete in forumRouter', req.body)
+router.delete('/', commentController.deleteComments, (req, res, next) => { 
     res.status(200).json(res.locals.comments)
 })
 
