@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import Header from '../Header.jsx';
+import Footer from '../Footer.jsx';
+import forumStyles from './forumStyles.scss';
 
 class Forum extends Component {
     constructor(props){
         super(props) 
         this.state = {
-            commentsByName: [],
+            both: [],
             replyButtonClicked: false,
             box: null
         }
@@ -37,10 +40,10 @@ class Forum extends Component {
         .then(res => {
             let both= []
             for (let i=0; i<res.length; i++){
-                both.push([res[i].name, ' ', res[i].comment])
+                both.push(res[i].title + ' ' + res[i].comment)
             }
             this.setState({
-                commentsByName: both
+                both: both
             })
         })
     }
@@ -48,12 +51,12 @@ class Forum extends Component {
     /* Send POST request to BD and append comment to document (invoke getComments) */
     postText () {
         let newText = document.getElementById('inputText').value
-        let newName = document.getElementById('inputName').value
-
+        let newTitle = document.getElementById('inputTitle').value
+        console.log('hi', newText, newTitle)
         fetch('/api/forum/:id', {
             method: 'POST', 
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({'name': newName, 'comment': newText})
+            body: JSON.stringify({'title': newTitle, 'comment': newText})
         })
         .then(() => this.getComments())
     }
@@ -61,14 +64,14 @@ class Forum extends Component {
     /* Send POST request to BD and append comment to document (invoke getComments) */
     postReply () {
         let replyText = document.getElementById('replyText').value
-        let replyName = document.getElementById('replyName').value
+        let replyTitle = document.getElementById('replyTitle').value
         //let repliedID = document.getElementById('index').value
 
         fetch('/api/forum/:id', {
             method: 'POST',
             headers: {'Content-Type': 'applcation/json'},
             body: JSON.stringify({
-                'name': replyName,
+                'title': replyTitle,
                 'comment': replyText,
                 //'repliedID': repliedID
             })
@@ -77,35 +80,46 @@ class Forum extends Component {
     }
 
     render () {
-        let commentsAndNames = this.state.commentsByName
+        let both = this.state.both
         let replyBClicked = this.state.replyButtonClicked
 
         return (
             <div>
-                <h1>Post In The Forum Here</h1>
-                <div className='commentsByName'>
-                    {commentsAndNames.map((both, index) => 
-                    <div value={both} id={index}>
-                        {both}
-                        <button onClick={this.deleteComment}>Delete</button>
-                        <button id='button' key={index} onClick={this.replyClicked}>Reply</button>
+                <Header/>
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div id='comments' className='col-sm'>
+                            <h3>Post A Comment With The KYODIE Community</h3>
+                            <div className='commentsByName'>
+                                {both.map((both, index) => 
+                                <div className='eachPost' key={index}>
+                                    {both } <br></br>
+                                    <button onClick={this.deleteComment}>Delete</button>
+                                    <button id='button' onClick={this.replyClicked}>Reply</button>
+                                </div>
+                                )}
+                            </div>
 
-            
+                            {replyBClicked === true ?
+                                <div>
+                                    <input id='replyText' placeholder='replyText'></input> 
+                                    <input id='replyTitle' placeholder='replyTitle'></input>
+                                    <button onClick={this.postReply}>Submit</button>
+                                </div> : null
+                            }
+
+                            <input id='inputTitle' placeholder='title of post'></input>
+                            <textarea id='inputText' placeholder='enter message here'></textarea>
+                            <button onClick={this.postText}>Submit</button>
+                        </div>
+                        <div id='sidebar' className='col-sm'>
+                            <img className='forumPic'
+                            src={require('/Users/c.aribo/Desktop/kyodie-backend/assets/images/forum.jpg')}>
+                            </img>
+                        </div>
                     </div>
-                    )}
                 </div>
-
-                    {replyBClicked === true ?
-                        <div>
-                            <input id='replyText' placeholder='replyText'></input> 
-                            <input id='replyName' placeholder='replyName'></input>
-                            <button onClick={this.postReply}>Submit</button>
-                        </div> : null
-                    }
-
-                <input id='inputName' placeholder='enter name here'></input>
-                <input id='inputText' placeholder='enter message here'></input>
-                <button onClick={this.postText}>Submit</button>
+                <Footer/>
             </div>
         )
     }

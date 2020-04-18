@@ -13,7 +13,7 @@
 /* Forum Comment Schema */
 const Schema = mongoose.Schema
 const commentSchema = new Schema({
-    name: String,
+    title: String,
     comment: String,
     user_id: { 
         type: Schema.Types.ObjectId,

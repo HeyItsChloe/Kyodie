@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Header from './Header.jsx';
 
 class Contact extends Component {
     render () {
         return  (
             <div>
-                Contact Info Here
+                <Header/>
+                <div>
+                    About Info Here
+                </div>
             </div>
         )
     }

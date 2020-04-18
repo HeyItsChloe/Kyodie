@@ -31,7 +31,7 @@ commentController.getCommentsByUserId = (req, res, next) => {
 
 commentController.postComments = (req, res, next) => {
     const { id } = req.params
-    model.Comment.create({name: req.body.name, comment: req.body.comment, user_id: id}, (err, comment) => {
+    model.Comment.create({title: req.body.title, comment: req.body.comment, user_id: id}, (err, comment) => {
         if (err) {
             return next({
                 err: 'err in postComments'
