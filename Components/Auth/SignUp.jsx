@@ -17,7 +17,7 @@ class SignUp extends Component {
                 >
                 </img>
 
-                <form>
+                <form className='authForm'>
                     <div className="container">
                         <div>
                             <h3>Create An Account</h3>

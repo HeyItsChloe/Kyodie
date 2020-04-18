@@ -17,7 +17,7 @@ class Login extends Component {
                 >
                 </img>
 
-                <form>
+                <form className='authForm'>
                     <div className="container">
                         <div>
                             <h3>LOGIN TO YOUR ACCOUNT</h3>
