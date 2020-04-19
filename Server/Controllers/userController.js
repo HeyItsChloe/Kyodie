@@ -17,14 +17,8 @@ userController.createUsers = (req, res, next) => {
     })
 }
 
-// userController.updateParams = (req, res, next) => {
-//     const { id } = req.params
-//     console.log('id', id)
-
-// }
-
 userController.verifyUser = (req, res, next) => {  
-  const { userName, password, _id} = req.body
+  const { userName, password} = req.body
   model.User.findOne({userName: userName, password: password}).exec()
   .then((data, err) => {
       if (err) {
@@ -35,18 +29,6 @@ userController.verifyUser = (req, res, next) => {
       }
       return next()
   })
-}
-
-userController.giveUserAccess = (req, res, next) => {
-    const { id } = req.params
-    model.User.findOne({_id: id}).exec()
-    .then((data, err) => {
-        if(err){
-            console.log('cant give user access')
-        } else {
-            return next()
-        }
-    })
 }
 
 module.exports = userController

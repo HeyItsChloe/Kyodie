@@ -3,8 +3,18 @@ import { Link } from 'react-router-dom';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
 import authStyles from './authStyles.scss';
+import Profile from './Profile.jsx';
 
 class Login extends Component {
+    constructor (props) {
+        super (props) 
+        this.state = {
+            isLoggedIn: false,
+            userName: '',
+            password: ''
+        }
+        this.handleLogin = this.handleLogin.bind(this)
+    }
     handleLogin (event) {
         event.preventDefault()
         const userName = document.getElementById('userName').value
@@ -14,11 +24,21 @@ class Login extends Component {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({userName: userName, password: password})
         })
-        .catch(() => {
+        .then(() => {
+            this.setState({
+                isLoggedIn: true,
+                userName: userName,
+                password: password
+            })
+        })
+        .catch(() => { 
             if (err) {console.log('err in signup createUser post')}
         })
     }
     render () {
+        let isLoggedIn = this.state.isLoggedIn
+        let userName = this.state.userName
+        let password = this.state.password
         return (
             <div>
                 <div className='authHeader'>
@@ -32,33 +52,46 @@ class Login extends Component {
 
                 <form className='authForm'>
                     <div className="container">
-                        <div>
-                            <h3>LOGIN TO YOUR ACCOUNT</h3>
+                        <div className='row'>
+                            <div className='col-sm'>
+                                <div>
+                                <h3>LOGIN TO YOUR ACCOUNT</h3>
+                                <span>
+                                    <img className='unameIcon'
+                                        src={require('../../assets/images/unameIcon.png')}
+                                        style={{width:'5%', height: '3%'}}>
+                                    </img>
+                                </span>
+                                <input id='userName' placeholder='userName' name="uname"></input><br></br>
+                                <span>
+                                    <img className='pswd'
+                                        src={require('../../assets/images/pswdIcon.png')}
+                                        style={{width:'5%', height: '3%'}}>
+                                    </img>
+                                </span>                            
+                                <input id='password' type="password" placeholder='password' ></input><br></br> 
+                                <button className='authSubmit' onClick={this.handleLogin} >Login</button> 
+                                </div>
+                                <div className='signupArea'>
+                                <label>No Account? Create Account Here  </label>
+                                <Link to={'/signup'}> <button className='signupSubmit'>SignUp</button> </Link>
+                                </div>
+                            </div>
 
-                            <span>
-                                <img className='unameIcon'
-                                    src={require('../../assets/images/unameIcon.png')}
-                                    style={{width:'5%', height: '3%'}}>
-                                </img>
-                            </span>
-                            <input id='userName' placeholder='userName' name="uname"></input><br></br>
-
-                            <span>
-                                <img className='pswd'
-                                    src={require('../../assets/images/pswdIcon.png')}
-                                    style={{width:'5%', height: '3%'}}>
-                                </img>
-                            </span>                            
-                            <input id='password' type="password" placeholder='password' ></input><br></br>
-
-                            <button className='authSubmit' onClick={this.handleLogin} >Login</button>  
-                        </div>
-                        <div className='signupArea'>
-                            <label>No Account? Create Account Here  </label>
-                            <Link to={'/signup'}> <button className='signupSubmit'>SignUp</button> </Link>
+                            <div className='col-sm'>
+                                {isLoggedIn ? 
+                                    <div>
+                                    <Link to={{
+                                    pathname:'/profile',
+                                    state: {userName: userName, password:password}
+                                    }}> <button >Go To Profile</button> </Link>
+                                    </div>
+                                : null}
+                            </div>
                         </div>
                     </div>
                 </form>
+
                 <div className='authFooter'>
                     <Footer/>
                 </div>

@@ -17,6 +17,7 @@ import Contact from '../../Components/Contact.jsx';
 import Forum from '../../Components/Forum/Forum.jsx';
 import Login from '../../Components/Auth/Login.jsx';
 import SignUp from '../../Components/Auth/SignUp.jsx';
+import Profile from '../../Components/Auth/Profile.jsx';
 import store from '../../Redux/store.js';
 
 const routing = (
@@ -28,9 +29,10 @@ const routing = (
       <Route path="/searchSubmit" component={ResultsPage} />
       <Route path="/resultsDetails" component={ResultsDetails} />
       <Route path="/categoryDetails" component={CategoryDetails} />
-      <Route path="/api/forum/:id" component={Forum} />
+      <Route path="/api/forum/:id" component={Forum} /> 
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
+      <Route path='/profile' component={Profile} />
     </div>
   </Router>
 )

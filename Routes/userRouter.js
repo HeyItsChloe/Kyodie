@@ -7,13 +7,15 @@ router.get('/', userController.getUsers, (req, res) => {
 })
 
 router.post('/signup/:id', userController.createUsers, userController.verifyUser, (req, res) => {
-    console.log(req.params, 'req params router')
     //res.status(200).json({})
     res.redirect('/')
 })
 
 router.post('/login', userController.verifyUser, (req, res) => {
-    res.redirect('/')
+    console.log(req.params, 'req params router')
+
+    res.status(200).json(res.locals.auth)
+    //res.redirect('/')
 })
 
 module.exports = router

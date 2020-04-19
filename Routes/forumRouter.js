@@ -10,7 +10,7 @@ router.get('/:id', commentController.getComments , (req, res, next) => {
     res.status(200).json(res.locals.comment)
 })
 
-router.post('/:id', userController.giveUserAccess, commentController.postComments, (req, res, next) => { 
+router.post('/:id', userController.verifyUser, commentController.postComments, (req, res, next) => { 
     console.log('hi in router')
     res.status(200).json({})
 })
