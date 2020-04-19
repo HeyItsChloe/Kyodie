@@ -11,10 +11,17 @@ userController.getUsers = (req, res, next) => {
 
 userController.createUsers = (req, res, next) => {
     const { userName, password } = req.body
+
     model.User.create({userName: userName, password: password}, (data) => {
         return next()
     })
 }
+
+// userController.updateParams = (req, res, next) => {
+//     const { id } = req.params
+//     console.log('id', id)
+
+// }
 
 userController.verifyUser = (req, res, next) => {  
   const { userName, password, _id} = req.body

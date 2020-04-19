@@ -5,6 +5,19 @@ import Footer from '../Footer.jsx';
 import authStyles from './authStyles.scss';
 
 class Login extends Component {
+    handleLogin (event) {
+        event.preventDefault()
+        const userName = document.getElementById('userName').value
+        const password = document.getElementById('password').value
+        fetch('/api/user/login', {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({userName: userName, password: password})
+        })
+        .catch(() => {
+            if (err) {console.log('err in signup createUser post')}
+        })
+    }
     render () {
         return (
             <div>
@@ -28,7 +41,7 @@ class Login extends Component {
                                     style={{width:'5%', height: '3%'}}>
                                 </img>
                             </span>
-                            <input placeholder='userName' name="uname"></input><br></br>
+                            <input id='userName' placeholder='userName' name="uname"></input><br></br>
 
                             <span>
                                 <img className='pswd'
@@ -36,9 +49,9 @@ class Login extends Component {
                                     style={{width:'5%', height: '3%'}}>
                                 </img>
                             </span>                            
-                            <input type="password" placeholder='password' ></input><br></br>
+                            <input id='password' type="password" placeholder='password' ></input><br></br>
 
-                            <button className='authSubmit'>Login</button>  
+                            <button className='authSubmit' onClick={this.handleLogin} >Login</button>  
                         </div>
                         <div className='signupArea'>
                             <label>No Account? Create Account Here  </label>
