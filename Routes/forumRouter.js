@@ -15,7 +15,9 @@ router.post('/:id', userController.verifyUser, commentController.postComments, (
     res.status(200).json({})
 })
 
-router.delete('/', commentController.deleteComments, (req, res, next) => { 
+router.delete('/:id', commentController.deleteComments, (req, res, next) => { 
+    console.log('bod2', req.body)
+
     res.status(200).json(res.locals.comments)
 })
 

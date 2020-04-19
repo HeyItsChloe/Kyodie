@@ -5,6 +5,16 @@ import Footer from '../Footer.jsx';
 import authStyles from './authStyles.scss';
 
 class SignUp extends Component {
+    constructor (props) {
+        super (props) 
+        this.state = {
+            isLoggedIn: false,
+            userName: '',
+            password: ''
+        }
+        this.createUser = this.createUser.bind(this)
+    }
+
     createUser (event) {
         event.preventDefault()
         const userName = document.getElementById('userName').value
@@ -14,13 +24,22 @@ class SignUp extends Component {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({userName: userName, password: password})
         })
+        .then(() => {
+            this.setState({
+                isLoggedIn: true,
+                userName: userName,
+                password: password
+            })
+        })
         .catch(() => {
             if (err) {console.log('err in signup createUser post')}
         })
     }
-    
 
     render () {
+        let isLoggedIn = this.state.isLoggedIn
+        let userName = this.state.userName
+        let password = this.state.password
         return (
             <div>
                 <div className='authHeader'>
@@ -54,6 +73,16 @@ class SignUp extends Component {
                             <input id='password' type="password" placeholder='password' ></input><br></br>
 
                             <button className='authSubmit' onClick={this.createUser} >SignUp</button>  
+                            <div className='col-sm'>
+                                {isLoggedIn ? 
+                                    <div>
+                                    <Link to={{
+                                    pathname:'/profile',
+                                    state: {userName: userName, password:password}
+                                    }}> <button >Go To Profile</button> </Link>
+                                    </div>
+                                : null}
+                            </div>
                         </div>
                     </div>
                 </form>

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
 import forumStyles from './forumStyles.scss';
-import Login from '../Auth/Login.jsx';
 
 class Forum extends Component {
     constructor(props){
@@ -16,7 +15,7 @@ class Forum extends Component {
         this.postText = this.postText.bind(this)
         this.postReply = this.postReply.bind(this)
         this.replyClicked = this.replyClicked.bind(this)
-        //this.deleteComment = this.deleteComment.bind(this)
+        this.deleteComment = this.deleteComment.bind(this)
     }
 
     componentDidMount() {
@@ -53,9 +52,6 @@ class Forum extends Component {
     postText () {
         let newText = document.getElementById('inputText').value
         let newTitle = document.getElementById('inputTitle').value
-        //console.log('hi', newText, newTitle)
-        //console.log('forum', this.props.location.state)
-
         fetch('/api/forum/:id', {
             method: 'POST', 
             headers: {'Content-Type' : 'application/json'},
@@ -64,6 +60,19 @@ class Forum extends Component {
                 comment: newText,
                 userName: this.props.location.state.userName,
                 password: this.props.location.state.password
+            })
+        })
+        .then(() => this.getComments())
+    }
+
+    deleteComment () {
+        let commentId = document.getElementById('eachPost').value
+        console.log('del', document.getElementById('eachPost').value)
+        fetch('/api/forum/:id', {
+            method: 'DELETE',
+            headers: {'Content-Type': 'Application-Json'},
+            body: JSON.stringify({
+                commentId: commentId, 
             })
         })
         .then(() => this.getComments())
@@ -91,7 +100,6 @@ class Forum extends Component {
     render () {
         let both = this.state.both
         let replyBClicked = this.state.replyButtonClicked
-        //console.log('forum', this.props.location.state)
         return (
             <div>
                 <Header/>
@@ -101,9 +109,9 @@ class Forum extends Component {
                             <h3>Post A Comment With The KYODIE Community</h3>
                             <div className='commentsByName'>
                                 {both.map((both, index) => 
-                                <div className='eachPost' key={index}>
+                                <div id='eachPost' value={index} className='eachPost' key={`post${index}`}>
                                     {both } <br></br>
-                                    <button onClick={this.deleteComment}>Delete</button>
+                                    <button id='delete' value={index} onClick={this.deleteComment}>Delete</button>
                                     <button id='button' onClick={this.replyClicked}>Reply</button>
                                 </div>
                                 )}
