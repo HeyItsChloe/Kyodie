@@ -10,8 +10,9 @@
 .then(() => console.log('Connected to Mongo'))
 .catch(err => console.log(err));
 
-/* Forum Comment Schema */
 const Schema = mongoose.Schema
+
+/* Forum Comment Schema */
 const commentSchema = new Schema({
     title: String,
     comment: String,
@@ -24,13 +25,21 @@ const Comment = mongoose.model('comment', commentSchema)
 
 /* Kyodie User Schema */
 const userSchema = new Schema({
-    userName: String,
-    password: String,
+    userName: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
 })
 const User = mongoose.model('user', userSchema)
 
+/* User Session Schema */
+const sessionSchema = new Schema({
+    cookieId: { type: String, required: true, unique: true },
+    createdAt: { type: Date, default: Date.now }
+  });
+const Session = mongoose.model('session', sessionSchema);
+
 module.exports = {
+    Session,
     Comment,
-    User
+    User,
 }
 

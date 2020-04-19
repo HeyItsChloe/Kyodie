@@ -40,8 +40,9 @@ class Forum extends Component {
         .then(res => {
             let both= []
             for (let i=0; i<res.length; i++){
-                both.push(res[i].title + ' ' + res[i].comment)
+                both.push({0:res[i].title, 1:res[i].comment, 2:res[i]._id})
             }
+            console.log('botha', both)
             this.setState({
                 both: both
             })
@@ -66,14 +67,10 @@ class Forum extends Component {
     }
 
     deleteComment () {
-        let commentId = document.getElementById('eachPost').value
-        console.log('del', document.getElementById('eachPost').value)
-        fetch('/api/forum/:id', {
+        let commentId = document.getElementById('delete').value
+        fetch(`/api/forum/${commentId}`, {
             method: 'DELETE',
             headers: {'Content-Type': 'Application-Json'},
-            body: JSON.stringify({
-                commentId: commentId, 
-            })
         })
         .then(() => this.getComments())
     }
@@ -109,9 +106,9 @@ class Forum extends Component {
                             <h3>Post A Comment With The KYODIE Community</h3>
                             <div className='commentsByName'>
                                 {both.map((both, index) => 
-                                <div id='eachPost' value={index} className='eachPost' key={`post${index}`}>
-                                    {both } <br></br>
-                                    <button id='delete' value={index} onClick={this.deleteComment}>Delete</button>
+                                <div id='eachPost' className='eachPost' key={index}>
+                                    {[both[0], ' ', both[1]]} <br></br>
+                                    <button key={index} id='delete' value={both[2]} onClick={this.deleteComment}>Delete</button>
                                     <button id='button' onClick={this.replyClicked}>Reply</button>
                                 </div>
                                 )}

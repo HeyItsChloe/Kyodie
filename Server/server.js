@@ -2,6 +2,7 @@
 /* Modules */
 const path = require('path');
 const bodyparser = require('body-parser');
+const cookieParser = require('cookie-parser');
 /* Create a server */
 const express = require('express');
 const app = express();
@@ -10,13 +11,14 @@ app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 /* Parsers */
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json())
+app.use(cookieParser());
 /* Routers */
 const forumRouter = require('../Routes/forumRouter.js')
 const userRouter = require('../Routes/userRouter.js')
 const apiRouter = require('../Routes/apiRouter.js')
 /* Controllers */
 const categoriesController =  require('./Controllers/categoriesController.js')
-
+const cookieController =  require('./Controllers/cookieController.js')
 
 
 /* ---------------------------------------------------- ROUTERS ---------------------------------------------------- */
@@ -30,7 +32,7 @@ app.use('/api', apiRouter)
 app.use('/build', express.static(path.join(__dirname, '../build')));
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
-app.get('/', (req, res) => {
+app.get('/', cookieController.setCookie, (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'))
 });
 

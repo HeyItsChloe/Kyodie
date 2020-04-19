@@ -30,11 +30,9 @@ commentController.getCommentsByUserId = (req, res, next) => {
 }
 
 commentController.postComments = (req, res, next) => {
-    console.log('hi in comment controller')
-    console.log('para,',req.params)
-
-    const { id } = req.params
-    model.Comment.create({title: req.body.title, comment: req.body.comment, user_id: id}, (err, comment) => {
+    console.log('in comment controller res.locals.auth', res.locals.auth)
+    const { auth } = res.locals
+    model.Comment.create({title: req.body.title, comment: req.body.comment, user_id: auth}, (err, comment) => {
         if (err) {
             return next({
                 err: 'err in postComments'
@@ -46,11 +44,8 @@ commentController.postComments = (req, res, next) => {
 }
 
 commentController.deleteComments = (req, res, next) => {
-    console.log('bod', req.body)
-    console.log('p', req.params)
     const { id } = req.params
-
-    model.Comment.deleteOne({id: id}, (err, comments) => {
+    model.Comment.deleteOne({_id: id}, (err, comments) => {
         if (err){
             console.log(err)
         }

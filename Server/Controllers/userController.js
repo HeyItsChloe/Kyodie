@@ -18,6 +18,7 @@ userController.createUsers = (req, res, next) => {
 }
 
 userController.verifyUser = (req, res, next) => {  
+  console.log('in user controller req.body', req.body)
   const { userName, password} = req.body
   model.User.findOne({userName: userName, password: password}).exec()
   .then((data, err) => {
@@ -26,6 +27,8 @@ userController.verifyUser = (req, res, next) => {
       } else {
         res.locals.auth = data
         req.params.id = data._id
+        console.log('in user controller res.locals', res.locals.auth)
+
       }
       return next()
   })

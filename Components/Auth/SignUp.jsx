@@ -50,12 +50,10 @@ class SignUp extends Component {
                     style={{width:'90%', height:'85%'}}
                 >
                 </img>
-
                 <form className='authForm'>
                     <div className="container">
                         <div>
                             <h3>Create An Account</h3>
-
                             <span>
                                 <img className='unameIcon'
                                     src={require('../../assets/images/unameIcon.png')}
@@ -63,7 +61,6 @@ class SignUp extends Component {
                                 </img>
                             </span>
                             <input id='userName' placeholder='userName' name="uname"></input><br></br>
-
                             <span>
                                 <img className='pswd'
                                     src={require('../../assets/images/pswdIcon.png')}
@@ -71,7 +68,6 @@ class SignUp extends Component {
                                 </img>
                             </span>                            
                             <input id='password' type="password" placeholder='password' ></input><br></br>
-
                             <button className='authSubmit' onClick={this.createUser} >SignUp</button>  
                             <div className='col-sm'>
                                 {isLoggedIn ? 
