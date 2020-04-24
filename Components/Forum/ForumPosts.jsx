@@ -12,6 +12,25 @@ class ForumPosts extends Component {
         //.then(() => this.getComments())
     }
 
+    render () {
+        let eachPost = this.props.eachPost
+        console.log('props in fp', eachPost)
+        return (
+            <div>
+                <div> 
+                    <p>Title: {eachPost.title}</p>
+                    <p>Comment: {eachPost.comment}</p>
+                    <button id='delete' value={eachPost.commentId} onClick={this.deleteComment} >Delete</button> 
+                    <button id='button' onClick={this.replyClicked} >Reply</button>
+                </div>
+
+            </div>
+        )
+    }
+}
+export default ForumPosts;
+
+
     /* Send POST request to BD and append comment to document (invoke getComments) */
     // postReply () {
     //     let replyText = document.getElementById('replyText').value
@@ -31,27 +50,10 @@ class ForumPosts extends Component {
     //     .then(() => this.getComments())
     // }
 
-    render () {
-        let eachPost = this.props.eachPost
-        console.log('props in fp', eachPost)
-        return (
-            <div>
-                <div> 
-                    <p>Title: {eachPost.title}</p>
-                    <p>Comment: {eachPost.comment}</p>
-                    <button id='delete' value={eachPost.commentId} onClick={this.deleteComment} >Delete</button> 
-                    <button id='button' onClick={this.replyClicked} >Reply</button>
-                </div>
-
-                {/* {replyBClicked === true ?
-                    <div>
-                        <input id='replyText' placeholder='replyText'></input> 
-                        <input id='replyTitle' placeholder='replyTitle'></input>
-                        <button onClick={this.postReply}>Submit</button>
-                    </div> : null
-                } */}
-            </div>
-        )
-    }
-}
-export default ForumPosts;
+                //     {/* {replyBClicked === true ?
+                //     <div>
+                //         <input id='replyText' placeholder='replyText'></input> 
+                //         <input id='replyTitle' placeholder='replyTitle'></input>
+                //         <button onClick={this.postReply}>Submit</button>
+                //     </div> : null
+                // } */}

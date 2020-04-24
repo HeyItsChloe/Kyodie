@@ -5,6 +5,10 @@ import forumStyles from './forumStyles.scss';
 import ForumPage from './ForumPage.jsx';
 
 class Forum extends Component {
+    constructor (props){
+        super(props)
+        this.postText = this.postText.bind(this)
+    }
     /* Send POST request to BD and append comment to document (invoke getComments) */
     postText () {
         let newText = document.getElementById('inputText').value

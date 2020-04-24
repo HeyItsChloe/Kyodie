@@ -33,7 +33,7 @@ const User = mongoose.model('user', userSchema)
 /* User Session Schema */
 const sessionSchema = new Schema({
     cookieId: { type: String, required: true, unique: true },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now, expires: '10m'}
   });
 const Session = mongoose.model('session', sessionSchema);
 
