@@ -26,8 +26,7 @@ class ResultsContainer extends Component {
                 ], 
           ]
          */
-        let results = this.props.propsPassed.data;
-
+        let results = this.props.propsPassed;
         let resultArr = []
         for(let j=0; j<results.length; j++){
             resultArr.push(

@@ -45,6 +45,7 @@ commentController.postComments = (req, res, next) => {
 
 commentController.deleteComments = (req, res, next) => {
     const { id } = req.params
+    console.log('id in delete comment controller', req.params.id)
     model.Comment.deleteOne({_id: id}, (err, comments) => {
         if (err){
             console.log(err)
