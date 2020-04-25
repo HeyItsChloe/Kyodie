@@ -7,7 +7,7 @@ class ForumContainer extends Component {
         let postArray = []
         for (let i=0; i<everything.length; i++) {
             postArray.push(
-                <ForumPosts eachPost={everything[i]} key={i} />
+                <ForumPosts eachPost={everything[i]} key={i} getComments={this.props.func} />
             )
         }
 
