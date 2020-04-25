@@ -3,20 +3,19 @@ import React, { Component } from 'react';
 class ForumPosts extends Component {
     constructor(props){
         super(props) 
-    }
+    };
 
     deleteComment (event) {
-        let commentId = event.target.value
+        let commentId = event.target.value;
         fetch(`/api/forum/${commentId}`, {
             method: 'DELETE',
             headers: {'Content-Type': 'Application-Json'},
         })
         .then(() => this.props.getComments())
-    }
+    };
 
     render () {
-        let eachPost = this.props.eachPost
-        console.log('props in fp', eachPost)
+        let eachPost = this.props.eachPost;
         return (
             <div>
                 <div> 

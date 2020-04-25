@@ -1,12 +1,10 @@
 /* Modules */
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 /* Assets */
 import '../css/styles.scss'; 
 import '../images/working_together.png';
-import '../images/working_together_2.png';
 /* Components */
 import App from '../../Components/App.jsx';
 import ResultsPage from '../../Components/Results/ResultsPage.jsx';
@@ -18,7 +16,6 @@ import Forum from '../../Components/Forum/Forum.jsx';
 import Login from '../../Components/Auth/Login.jsx';
 import SignUp from '../../Components/Auth/SignUp.jsx';
 import Profile from '../../Components/Auth/Profile.jsx';
-import store from '../../Redux/store.js';
 
 const routing = (
   <Router>
@@ -35,11 +32,11 @@ const routing = (
       <Route path='/profile' component={Profile} />
     </div>
   </Router>
-)
+);
 
 render(
-  <Provider store={store}>
+  <div>
     {routing}
-  </Provider>,
+  </div>,
   document.getElementById('root')
 );

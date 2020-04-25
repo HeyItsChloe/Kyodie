@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ResultsContainer from './ResultsContainer.jsx';
-import axios from 'axios'
+import axios from 'axios';
 
 
 class ResultsPage extends Component {
@@ -9,17 +9,17 @@ class ResultsPage extends Component {
         this.state = {
             data: []
         }
-    this.getResults = this.getResults.bind(this)
-    }
+    this.getResults = this.getResults.bind(this);
+    };
 
     componentWillMount () {
-        this.getResults()
-    }
+        this.getResults();
+    };
 
     getResults () {
-        let category = this.props.location.state.category
-        let keyword = this.props.location.state.keyword
-        let postalCode = this.props.location.state.postalCode
+        let category = this.props.location.state.category;
+        let keyword = this.props.location.state.keyword;
+        let postalCode = this.props.location.state.postalCode;
         const fetching =(category, keyword, postalCode) => { 
             let url = `https://trialapi.soleo.com/businesses?Category=${category}&Keyword=${keyword}&PostalCode=${postalCode}&APIKey=e56x4kzx7bh54p8z6tj53t48`
             axios.get (url)
@@ -50,8 +50,8 @@ class ResultsPage extends Component {
             })
             .catch(err => console.log(err))
         }
-        fetching(category, keyword, postalCode )
-    }
+        fetching(category, keyword, postalCode);
+    };
 
     render () {
         return (
@@ -63,8 +63,7 @@ class ResultsPage extends Component {
                     <ResultsContainer propsPassed={this.state.data}/>
                 </div>
             </div>
-        )
-    }
-}
-
+        );
+    };
+};
 export default ResultsPage;

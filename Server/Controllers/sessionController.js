@@ -16,19 +16,16 @@ sessionController.isLoggedIn = (req, res, next) => {
       console.log('Please Log In');
     } else {
       // session found
-      console.log('auth  session', session)
-      res.locals.auth = session.cookieId
+      res.locals.auth = session.cookieId;
       return next();
     }
-  })
+  });
 };
 
 /**
 * startSession - create and save a new Session into the database.
 */
 sessionController.startSession = (req, res, next) => {
-    console.log('in session controller res.locals', res.locals.auth)
-
   model.Session.create({ cookieId: res.locals.auth._id }, (err, session) => {
     if (err) return next('Error in sessionController.startSession: ' + JSON.stringify(err));
     else return next();

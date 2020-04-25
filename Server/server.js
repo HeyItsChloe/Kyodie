@@ -10,21 +10,21 @@ const PORT = 3000;
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 /* Parsers */
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 app.use(cookieParser());
 /* Routers */
-const forumRouter = require('../Routes/forumRouter.js')
-const userRouter = require('../Routes/userRouter.js')
-const apiRouter = require('../Routes/apiRouter.js')
+const forumRouter = require('../Routes/forumRouter.js');
+const userRouter = require('../Routes/userRouter.js');
+const apiRouter = require('../Routes/apiRouter.js');
 /* Controllers */
-const categoriesController =  require('./Controllers/categoriesController.js')
-const cookieController =  require('./Controllers/cookieController.js')
+const categoriesController =  require('./Controllers/categoriesController.js');
+const cookieController =  require('./Controllers/cookieController.js');
 
 
 /* ---------------------------------------------------- ROUTERS ---------------------------------------------------- */
-app.use('/api/user', userRouter)
-app.use('/api/forum', forumRouter)
-app.use('/api', apiRouter)
+app.use('/api/user', userRouter);
+app.use('/api/forum', forumRouter);
+app.use('/api', apiRouter);
 
 
 
@@ -38,7 +38,7 @@ app.get('/', cookieController.setCookie, (req, res) => {
 
 app.get('/categories', categoriesController.getCategories, (req, res) => {
     res.status(200).json({topCategories : res.locals.topCategories})
-})
+});
 
 
 
@@ -46,9 +46,9 @@ app.get('/categories', categoriesController.getCategories, (req, res) => {
 app.use('*', (req, res, err, next) => {
     console.log('err / catch all', err);
     res.status(404);
-})
+});
 
 app.use((err, req, res, next) => {
     console.log('global', err);
     res.status(500).send('Internal Server Error');
-})
+});

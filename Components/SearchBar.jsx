@@ -1,7 +1,6 @@
 import  React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ResultsPage from './Results/ResultsPage.jsx'
 
 class SearchBar extends Component {
     constructor (props) {
@@ -11,22 +10,22 @@ class SearchBar extends Component {
             category: '',
             keyword: '',
             postalCode: ''
-        }
-        this.getDropDown = this.getDropDown.bind(this)
-        this.getUserInput = this.getUserInput.bind(this)
-    }
+        };
+        this.getDropDown = this.getDropDown.bind(this);
+        this.getUserInput = this.getUserInput.bind(this);
+    };
 
     componentWillMount () {
-       this.getDropDown()
-    }
+       this.getDropDown();
+    };
 
     getUserInput () {
         this.setState({
             category: document.getElementById('category').value,
             keyword: document.getElementById('keyword').value,
             postalCode: document.getElementById('zip').value
-        })
-    }
+        });
+    };
 
     getDropDown () { 
         axios.get ('/categories')
@@ -37,7 +36,7 @@ class SearchBar extends Component {
             })
         })
         .catch(err => console.log(err))
-    }
+    };
         
     render () {
         let topCatInfo = this.state.topCatArray;
@@ -68,6 +67,5 @@ class SearchBar extends Component {
         )
     }
 }
-
-export default SearchBar
+export default SearchBar;
 

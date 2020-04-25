@@ -8,37 +8,25 @@ class Login extends Component {
     constructor (props) {
         super (props) 
         this.state = {
-            isLoggedIn: false,
-            userName: '',
-            password: ''
-        }
-        this.handleLogin = this.handleLogin.bind(this)
-    }
-    handleLogin (event) {
-        event.preventDefault()
-        const userName = document.getElementById('userName').value
-        const password = document.getElementById('password').value
-        fetch('/api/user/login', {
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({userName: userName, password: password})
-        })
-        .then(() => {
-            this.setState({
-                isLoggedIn: true,
-                userName: userName,
-                password: password
-            })
-        })
-        .catch(() => { 
-            if (err) {console.log('err in signup createUser post')}
-        })
-    }
+            userNameLogin: '',
+            passwordLogin: '',
+            loggingIn: false
+        };
+       this.getUserInput = this.getUserInput.bind(this);
+    }; 
     
+    getUserInput () {
+        this.setState({
+            userNameLogin: document.getElementById('userName').value,
+            passwordLogin: document.getElementById('password').value,
+            loggingIn: true
+        });
+    };
+
     render () {
-        let isLoggedIn = this.state.isLoggedIn
-        let userName = this.state.userName
-        let password = this.state.password
+        let loggingIn = this.state.loggingIn;
+        let userNameLogin = this.state.userNameLogin;
+        let passwordLogin = this.state.passwordLogin;
         return (
             <div>
                 <div className='authHeader'>
@@ -52,35 +40,30 @@ class Login extends Component {
                 <form className='authForm'>
                     <div className="container">
                         <div>
-                        <h3>LOGIN TO YOUR ACCOUNT</h3>
-                        <span>
-                            <img className='unameIcon'
-                                src={require('../../assets/images/unameIcon.png')}
-                                style={{width:'5%', height: '3%'}}>
-                            </img>
-                        </span>
-                        <input id='userName' placeholder='userName' name="uname"></input><br></br>
-                        <span>
-                            <img className='pswd'
-                                src={require('../../assets/images/pswdIcon.png')}
-                                style={{width:'5%', height: '3%'}}>
-                            </img>
-                        </span>                            
-                        <input id='password' type="password" placeholder='password' ></input><br></br> 
-                        <button className='authSubmit' onClick={this.handleLogin} >Login</button> 
+                            <h3>LOGIN TO YOUR ACCOUNT</h3>
+                            <span>
+                                <img className='unameIcon'
+                                    src={require('../../assets/images/unameIcon.png')}
+                                    style={{width:'5%', height: '3%'}}>
+                                </img>
+                            </span>
+                            <input id='userName' placeholder='userName' name="uname" onChange={this.getUserInput}></input><br></br>
+                            <span>
+                                <img className='pswd'
+                                    src={require('../../assets/images/pswdIcon.png')}
+                                    style={{width:'5%', height: '3%'}}>
+                                </img>
+                            </span>                            
+                            <input id='password' type="password" placeholder='password' onChange={this.getUserInput}></input><br></br> 
+                            <Link to={{
+                                pathname:'/profile',
+                                state: {userNameLogin: userNameLogin, passwordLogin:passwordLogin, loggingIn:loggingIn}
+                                }}> <button className='authSubmit' >Login</button>  </Link>
                         </div>
                         <div className='signupArea'>
-                        <label>No Account? Create Account Here  </label>
-                        <Link to={'/signup'}> <button className='signupSubmit'>SignUp</button> </Link>
+                            <label>No Account? Create Account Here  </label>
+                            <Link to={'/signup'}> <button className='signupSubmit'>SignUp</button> </Link>
                         </div>
-                        {isLoggedIn ? 
-                            <div>
-                            <Link to={{
-                            pathname:'/profile',
-                            state: {userName: userName, password:password}
-                            }}> <button >Go To Profile</button> </Link>
-                            </div>
-                        : null}
                     </div>
                 </form>
                 <div className='authFooter'>
@@ -90,5 +73,4 @@ class Login extends Component {
         )
     }
 }
-
-export default Login
+export default Login;

@@ -11,14 +11,14 @@ class Forum extends Component {
             title: '',
             comment: '',
             all: []
-        }
-        this.getComments = this.getComments.bind(this)
-        this.postText = this.postText.bind(this)
-    }
+        };
+        this.getComments = this.getComments.bind(this);
+        this.postText = this.postText.bind(this);
+    };
 
     componentDidMount () {
-        this.getComments()
-    }
+        this.getComments();
+    };
 
     /* GET all comments from DB and pass them as props to the ForumContainer.jsx */
     getComments () {
@@ -30,22 +30,21 @@ class Forum extends Component {
         })
         .then(res => res.json())
         .then(res => {
-            console.log("res in get this.getComments", res)
-            let alls = []
+            let alls = [];
             for (let i=0; i<res.length; i++){
                 alls.push({title:res[i].title, comment:res[i].comment, commentId:res[i]._id, userId:res[i].user_id})
-            }
+            };
             this.setState({
                 all: alls,
             }, () => {console.log('post a comment')})
         })
         .catch(err => console.log(err))
-    }
+    };
 
     /* Send POST request to BD and append comment to document (invoke getComments) */
     postText () {
-        let newText = document.getElementById('inputTitle').value
-        let newTitle = document.getElementById('inputText').value
+        let newText = document.getElementById('inputTitle').value;
+        let newTitle = document.getElementById('inputText').value;
         fetch('/api/forum/:id', {
             method: 'POST', 
             headers: {'Content-Type' : 'application/json'},
@@ -61,9 +60,8 @@ class Forum extends Component {
 
 
     render () {
-        let returnVal = []
-        this.state.all.length > 0 ? returnVal.push(<ForumContainer props={this.state.all} func={this.getComments} />) : null
-        
+        let returnVal = [];
+        this.state.all.length > 0 ? returnVal.push(<ForumContainer props={this.state.all} func={this.getComments} />) : null;
         return (
             <div>
                 <Header/>
@@ -92,5 +90,4 @@ class Forum extends Component {
         )
     }
 }
-
 export default Forum;

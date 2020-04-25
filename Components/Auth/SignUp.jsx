@@ -8,38 +8,25 @@ class SignUp extends Component {
     constructor (props) {
         super (props) 
         this.state = {
-            isLoggedIn: false,
-            userName: '',
-            password: ''
-        }
-        this.createUser = this.createUser.bind(this)
-    }
+            signingUp: false,
+            userNameSignup: '',
+            passwordSignup: ''
+        };
+        this.getUserInput = this.getUserInput.bind(this);
+    };
 
-    createUser (event) {
-        event.preventDefault()
-        const userName = document.getElementById('userName').value
-        const password = document.getElementById('password').value
-        fetch('/api/user/signup/:id', {
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({userName: userName, password: password})
-        })
-        .then(() => {
-            this.setState({
-                isLoggedIn: true,
-                userName: userName,
-                password: password
-            })
-        })
-        .catch(() => {
-            if (err) {console.log('err in signup createUser post')}
-        })
-    }
+    getUserInput () {
+        this.setState({
+            userNameSignup: document.getElementById('userName').value,
+            passwordSignup: document.getElementById('password').value,
+            signingUp: true
+        });
+    };
 
     render () {
-        let isLoggedIn = this.state.isLoggedIn
-        let userName = this.state.userName
-        let password = this.state.password
+        let signingUp = this.state.signingUp;
+        let userNameSignup = this.state.userNameSignup;
+        let passwordSignup = this.state.passwordSignup;
         return (
             <div>
                 <div className='authHeader'>
@@ -60,25 +47,18 @@ class SignUp extends Component {
                                     style={{width:'5%', height: '3%'}}>
                                 </img>
                             </span>
-                            <input id='userName' placeholder='userName' name="uname"></input><br></br>
+                            <input id='userName' placeholder='userName' name="uname" onChange={this.getUserInput}></input><br></br>
                             <span>
                                 <img className='pswd'
                                     src={require('../../assets/images/pswdIcon.png')}
                                     style={{width:'5%', height: '3%'}}>
                                 </img>
                             </span>                            
-                            <input id='password' type="password" placeholder='password' ></input><br></br>
-                            <button className='authSubmit' onClick={this.createUser} >SignUp</button>  
-                            <div className='col-sm'>
-                                {isLoggedIn ? 
-                                    <div>
-                                    <Link to={{
+                            <input id='password' type="password" placeholder='password' onChange={this.getUserInput}></input><br></br>
+                            <Link to={{
                                     pathname:'/profile',
-                                    state: {userName: userName, password:password}
-                                    }}> <button >Go To Profile</button> </Link>
-                                    </div>
-                                : null}
-                            </div>
+                                    state: {userNameSignup: userNameSignup, passwordSignup:passwordSignup, signingUp:signingUp}
+                                    }}> <button className='authSubmit'>SignUp</button> </Link>  
                         </div>
                     </div>
                 </form>
@@ -89,5 +69,4 @@ class SignUp extends Component {
         )
     }
 }
-
-export default SignUp
+export default SignUp;

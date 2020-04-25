@@ -12,8 +12,6 @@ cookieController.setCookie = (req, res, next) => {
 * setSSIDCookie - store the user id in a cookie
 */
 cookieController.setSSIDCookie = (req, res, next) => {
-    console.log('in cookie controller res.locals', res.locals.auth)
-
   res.cookie('ssid', res.locals.auth._id, { httpOnly: true });
   return next();
 }
