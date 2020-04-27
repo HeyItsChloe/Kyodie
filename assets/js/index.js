@@ -9,7 +9,6 @@ import '../images/working_together.png';
 import App from '../../Components/App.jsx';
 import ResultsPage from '../../Components/Results/ResultsPage.jsx';
 import ResultsDetails from '../../Components/Results/ResultsDetails.jsx';
-import CategoryDetails from '../../Components/Categories/CategoryDetails.jsx';
 import About from '../../Components/About.jsx';
 import Contact from '../../Components/Contact.jsx';
 import Forum from '../../Components/Forum/Forum.jsx';
@@ -25,7 +24,6 @@ const routing = (
       <Route path="/contact" component={Contact} />
       <Route path="/searchSubmit" component={ResultsPage} />
       <Route path="/resultsDetails" component={ResultsDetails} />
-      <Route path="/categoryDetails" component={CategoryDetails} />
       <Route path="/api/forum/:id" component={Forum} /> 
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
