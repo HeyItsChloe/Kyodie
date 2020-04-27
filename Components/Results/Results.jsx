@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../assets/css/styles.scss';
-import Header from '../Header.jsx';
-import Footer from '../Footer.jsx';
+
 
 class Results extends Component {
     render () {
         let data = this.props.business;
         return (
             <div>
-                <Header/>
                 <div className="resultBoxes">
                     <div>
                         <p>Name: {data[0]} </p>
@@ -26,7 +24,6 @@ class Results extends Component {
                         }}> <button>Show More Details</button> </Link> 
                     </div>
                 </div>
-                <Footer/>
             </div>
         );
     };
