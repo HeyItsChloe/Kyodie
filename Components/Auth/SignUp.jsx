@@ -2,7 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
-import authStyles from './authStyles.scss';
+import { Typography } from '@material-ui/core';
+import { TextField, Button, withStyles } from '@material-ui/core';
+
+const styles = (theme) => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '19.2ch',
+          },
+        margin: theme.spacing(10),
+        color: 'hotpink',
+        textAlign: 'center',
+    }
+  });
 
 class SignUp extends Component {
     constructor (props) {
@@ -27,46 +40,47 @@ class SignUp extends Component {
         let signingUp = this.state.signingUp;
         let userNameSignup = this.state.userNameSignup;
         let passwordSignup = this.state.passwordSignup;
+        let { classes } = this.props
         return (
-            <div>
-                <div className='authHeader'>
+            <div className='signupPage'>
+                {/* change header color */}
+                <div className='signupHeader'>
                     <Header/>
                 </div>
-                <img className='backgroundImg'
-                    src={require('../../assets/images/ideas.jpg')}
-                    style={{width:'90%', height:'85%'}}
-                >
-                </img>
-                <form className='authForm'>
-                    <div className="container">
-                        <div>
-                            <h3>Create An Account</h3>
-                            <span>
-                                <img className='unameIcon'
-                                    src={require('../../assets/images/unameIcon.png')}
-                                    style={{width:'5%', height: '3%'}}>
-                                </img>
-                            </span>
-                            <input id='userName' placeholder='userName' name="uname" onChange={this.getUserInput}></input><br></br>
-                            <span>
-                                <img className='pswd'
-                                    src={require('../../assets/images/pswdIcon.png')}
-                                    style={{width:'5%', height: '3%'}}>
-                                </img>
-                            </span>                            
-                            <input id='password' type="password" placeholder='password' onChange={this.getUserInput}></input><br></br>
-                            <Link to={{
-                                    pathname:'/profile',
-                                    state: {userNameSignup: userNameSignup, passwordSignup:passwordSignup, signingUp:signingUp}
-                                    }}> <button className='authSubmit'>SignUp</button> </Link>  
-                        </div>
+
+                <form className={classes.root}>
+                    <div>
+                        <Typography> CREATE AN ACCOUNT </Typography>
+                        
+                        {/* give each icon image? and make color pink*/}
+                        <TextField
+                        required
+                        id="outlined-basic"
+                        label="Enter User Name"
+                        variant="outlined"
+                        onChange={this.getUserInput} />     
+                        <TextField
+                        required
+                        id="outlined-basic"
+                        label="Enter Password"
+                        variant="outlined"
+                        onChange={this.getUserInput} /> <br></br>
+
+                        {/* pass state here */}
+                        <Button 
+                        size='medium'
+                        p={5}
+                        variant="outlined" 
+                        color="inherit" 
+                        component={Link}
+                        to='/profile'>
+                            SignUp
+                        </Button>   
                     </div>
                 </form>
-                <div className='authFooter'>
-                    <Footer/>
-                </div>
+                <Footer/>
             </div>
         )
     }
 }
-export default SignUp;
+export default withStyles(styles)(SignUp);

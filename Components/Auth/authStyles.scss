@@ -1,16 +1,22 @@
+.loginPage {
+    background-color: blue;
+    height: 100%;
+}
 
-.authForm {
-    border-style: solid;
-    border-color: navy;
-    margin-left: 35%;
-    margin-right:35%;
-    margin-top: 10%;
-    width: 30%;
-    text-align: center;
-    background-color: transparentize(navy, 0.5);
-    position: relative;
-    z-index: 2;
-    color: white;
+.signupPage {
+    background-color: yellowgreen;
+    height: 100%; 
+}
+
+.signupArea {
+    position: fixed;
+    bottom: 100;
+    display: flex;
+}
+
+.profilePage {
+    background-color: peru;
+    height: 100%;  
 }
 
 input {
@@ -52,11 +58,11 @@ input {
     margin-bottom: 40px;
 }
 
-.signupArea {
-    display: flex;
-    background-color: navy;
-    padding: 10px;
-}
+// .signupArea {
+//     display: flex;
+//     background-color: navy;
+//     padding: 10px;
+// }
 
 .signupSubmit {
     margin-left: 5px;;
