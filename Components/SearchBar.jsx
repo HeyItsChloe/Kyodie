@@ -1,6 +1,24 @@
 import  React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { TextField, MenuItem, Button, withStyles } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+
+const styleSheet = (theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '19.2ch',
+        backgroundColor: 'transparent',
+      },
+    },
+    IconButton: {
+        color: 'grey',
+        padding: theme.spacing(1.7),
+        margin: theme.spacing(1.2),
+        backgroundColor: 'gold'
+    }
+  });
 
 class SearchBar extends Component {
     constructor (props) {
@@ -19,11 +37,11 @@ class SearchBar extends Component {
        this.getDropDown();
     };
 
-    getUserInput () {
+    getUserInput (event) {
         this.setState({
-            category: document.getElementById('category').value,
-            keyword: document.getElementById('keyword').value,
-            postalCode: document.getElementById('zip').value
+            category: event.target.value, //document.getElementById('category').value,
+            keyword: event.target.value,//document.getElementById('keyword').value,
+            postalCode: event.target.value //document.getElementById('zip').value
         });
     };
 
@@ -43,13 +61,49 @@ class SearchBar extends Component {
         let category = this.state.category;
         let keyword = this.state.keyword;
         let postalCode = this.state.postalCode;
+        let { classes } = this.props
+
         return (
-            <div>
+            <div  >
+                <form className={classes.root}>
+                    <TextField           
+                        required
+                        id="outlined-basic"
+                        label="Type Of Business"
+                        variant="outlined"
+                        onChange={this.getUserInput} />                   
+                    <TextField           
+                        required
+                        id="outlined-basic"
+                        label="Zip Code"
+                        variant="outlined"
+                        onChange={this.getUserInput} />
+                    <TextField
+                        required
+                        id="outlined-select"
+                        select
+                        label="Select A Category" 
+                        variant="outlined"
+                        //value={topCatInfo}
+                        onChange={this.getUserInput} >
+                            {topCatInfo.map((option, index) => <MenuItem key={index} value={option} > {option} </MenuItem>)}
+                    </TextField>
+                    <Button 
+                        className={classes.IconButton}
+                        size='medium'
+                        p={5}
+                        variant="outlined" 
+                        color="inherit" 
+                        component={Link}
+                        to='/searchSubmit'>
+                            <SearchIcon/>
+                    </Button>
+                </form>
+
+
+{/* 
                 <div className="search">   
-                    <img className='searchImg' 
-                        src={require('/Users/c.aribo/Desktop/kyodie-backend/assets/images/working_together.png')} 
-                        style={{width:'80%', height: '96%'}}>
-                    </img><br></br>
+
 
                     <div className='searchFields'>
                         <h3>Search For Any Local Business</h3>
@@ -62,10 +116,9 @@ class SearchBar extends Component {
                         state: {category: category, keyword: keyword, postalCode: postalCode}
                     }}> <button id="searchSubmit" >Search</button></Link>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }
 }
-export default SearchBar;
-
+export default withStyles(styleSheet)(SearchBar);

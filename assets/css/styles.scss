@@ -1,29 +1,48 @@
-.pageHeader {
-  font-family: Impact, Charcoal, sans-serif;
-  color: black;
-  ul {
-    top: 10;
-    position: fixed;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 97.5%;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.homepage {
+  background-color: pink;
+  height: 100%;
+  position: relative;
+}
+
+// .pageHeader {
+//   font-family: Impact, Charcoal, sans-serif;
+//   color: navy;
+//   background-color: pink;
+//   .iconButton {
+//     padding: 0;
+//     float: right;
+//   }
+// }
+
+.pageFooter {
+  color: navy;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0px 8px 0px 8px;
   li {
-    float: right;
-    padding: 0px 5px;
+    display: flex;
+      list-style-type: none;
+      padding: 0px 8px 0px 8px;
+      float: right;
+      overflow: hidden;
   }
 }
 
+.searchFormHome {
+  color: navy;
+  position: absolute;
+  bottom: 80;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  // padding: 0px 8px 0px 8px;
+  
+}
+
+
 .search {
-  padding: 10px 0px 600px 10px;
-  background-color: #6DABA3;
-  position: relative;  
-  .searchImg {
-    padding: 0px 0px 0px 0px;
-    position: absolute;
-    }
   .searchFields {
     font-family: "Arial Black", Gadget, sans-serif;
     text-align: center;
@@ -32,24 +51,22 @@
     height: 40%;
     right: 10;
     bottom: 200;
-    background-color: transparentize($color: #ffffff, $amount: .2);
+    //background-color: transparentize($color: #ffffff, $amount: .2);
     border: navy;
     border-style: inset;
     select {
       width: 90%;
       height: 45px;
-      background-color: transparentize($color: #001a33, $amount: .2);
+      background-color: transparentize($color: pink, $amount: .5);
       -webkit-border-radius: 0;
       border-radius: 0px; 
       border: none;
-      outline: 1px inset #001a33;
-      outline-offset: -1px;
       box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
     } 
     .input1 {
       width: 90%;
       height: 45px;
-      background-color: transparentize($color: #001a33, $amount: .2);
+      background-color: transparentize($color: pink, $amount: .2);
       border: none;
       box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
       border-right: white;
@@ -57,88 +74,76 @@
     .input2 {
       width: 90%;
       height: 45px;
-      background-color: transparentize($color: #001a33, $amount: .2);
+      background-color: transparentize($color: pink, $amount: .2);
       border: none;
       box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
+      border-right: white;
     }
     button {
       margin-top: 5;
       width: 40%;
       height: 30px;
+      background-color: transparentize($color: pink, $amount: .2);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
     }
   }
 }
 
-.header {
-  font-family: "Arial Black", Gadget, sans-serif;
-  display: flex;
-  background-color: ffb3bf;
-  justify-content: space-between;
-  align-items: center;
-  margin-top:10px;
-  padding: 10px 10px 0px 10px;
-}
+// .header {
+//   font-family: "Arial Black", Gadget, sans-serif;
+//   display: flex;
+//   background-color: ffb3bf;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-top:10px;
+//   padding: 10px 10px 0px 10px;
+// }
 
-.topCatContainer {
-  background-color: ffb3bf;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
-}
+// .topCatContainer {
+//   background-color: ffb3bf;
+//   padding: 10px 10px 10px 10px;
+//   text-align: center;
+// }
 
-.categoryBoxes {
-  background-color: white;
-  margin-bottom: 20px;
-  //padding: 0px 60px 10px 0px;
-  width:30%;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
-  overflow: auto;
-}
+// .categoryBoxes {
+//   background-color: white;
+//   margin-bottom: 20px;
+//   //padding: 0px 60px 10px 0px;
+//   width:30%;
+//   box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+//   overflow: auto;
+// }
 
-.resultsPage {
-  border: green;
-  border-style: solid;
-}
+// .resultsPage {
+//   border: green;
+//   border-style: solid;
+// }
 
-.resultsContainer {
-  border: purple;
-  border-style: solid;
-  text-align: center;
-}
+// .resultsContainer {
+//   border: purple;
+//   border-style: solid;
+//   text-align: center;
+// }
 
-.categoriesContainer {
-  border: salmon;
-  border-style: solid;
-  text-align: center;
-}
+// .categoriesContainer {
+//   border: salmon;
+//   border-style: solid;
+//   text-align: center;
+// }
 
-.resultBoxes {
-  padding: 10px;
-  width:30%;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
-  overflow: auto;
-}
+// .resultBoxes {
+//   padding: 10px;
+//   width:30%;
+//   box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+//   overflow: auto;
+// }
 
-.pageFooter {
-  background-color: transparentize($color: #000800, $amount: .2);
-  color: white;
-  display: flex;
-  align-content: space-between;
-  padding: 0px 0px 0px 10px;
-  margin-top: 10px;
-  .text {
-    width: 40%;
-  }
-  .socialMedia {
-    list-style-type: none;
-    justify-content: flex-end;
-    padding: 0px 0px 0px 590px;
-  }
-}
 
-.aboutText {
-  margin-top: 30px;
-}
 
-#rightColumn {
-  margin-top: 70px;
-}
+// .aboutText {
+//   margin-top: 30px;
+// }
+
+// #rightColumn {
+//   margin-top: 70px;
+// }
