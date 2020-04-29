@@ -1,36 +1,13 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import { Tabs, Tab, withStyles, Typography, Box, Button } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
-import { Link } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
 
-
-import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
-// export default function Profile() {
-//   return (
-    // <Paper >
-    //   <Tabs
-    //     value={0}
-    //     indicatorColor="primary"
-    //     textColor="primary"
-    //     centered
-    //   >
-    //     <Tab label="Item One" />
-    //     <Tab label="Item Two" />
-    //     <Tab label="Item Three" />
-    //   </Tabs>
-    // </Paper>
-//   );
-// }
-
+/* Helper Functions For the Vertical MUI Tabs */
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -47,6 +24,7 @@ function TabPanel(props) {
     </div>
   );
 }
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
@@ -59,8 +37,6 @@ function a11yProps(index) {
     'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
-
-
 
 const styles = (theme) => ({
   root: {
@@ -81,57 +57,58 @@ class Profile extends Component {
       this.state = {
         value: 0
       }
-      // this.handleLogin = this.handleLogin.bind(this);
-      // this.createUser = this.createUser.bind(this);
+      this.handleLogin = this.handleLogin.bind(this);
+      this.createUser = this.createUser.bind(this);
       this.handleChange = this.handleChange.bind(this)
   }; 
 
-  handleChange () {
+  handleChange ( event, index) {
     this.setState({
-      value: event.target.value
+      value: index
     })
   }
 
-  // componentDidMount () {
-  //     if (this.props.location.state.loggingIn === true){
-  //         this.handleLogin();
-  //     };
-  //     if (this.props.location.state.signingUp === true) {
-  //         this.createUser();
-  //     };
-  // };
+  componentDidMount () {
+      if (this.props.location.state.loggingIn === true){
+          this.handleLogin();
+      };
+      if (this.props.location.state.signingUp === true) {
+          this.createUser();
+      };
+  };
 
-  // handleLogin () {
-  //     const userNameLogin = this.props.location.state.userNameLogin;
-  //     const passwordLogin = this.props.location.state.passwordLogin;
-  //     fetch('/api/user/login', {
-  //         method: 'POST',
-  //         headers: {'Content-Type' : 'application/json'},
-  //         body: JSON.stringify({userName: userNameLogin, password: passwordLogin})
-  //     })
-  //     .catch(() => { 
-  //         if (err) {console.log('err in signup createUser post')}
-  //     })
-  // };
+  handleLogin () {
+      const userNameLogin = this.props.location.state.userNameLogin;
+      const passwordLogin = this.props.location.state.passwordLogin;
+      fetch('/api/user/login', {
+          method: 'POST',
+          headers: {'Content-Type' : 'application/json'},
+          body: JSON.stringify({userName: userNameLogin, password: passwordLogin})
+      })
+      .catch(() => { 
+          if (err) {console.log('err in signup createUser post')}
+      })
+  };
 
-  // createUser () {
-  //     const userNameSignup = this.props.location.state.userNameSignup;
-  //     const passwordSignup = this.props.location.state.passwordSignup;
-  //     fetch('/api/user/signup', {
-  //         method: 'POST',
-  //         headers: {'Content-Type' : 'application/json'},
-  //         body: JSON.stringify({userName: userNameSignup, password: passwordSignup})
-  //     })
-  //     .catch((err) => {
-  //         if (err) {console.log('err in signup createUser post')}
-  //     })
-  // };
+  createUser () {
+      const userNameSignup = this.props.location.state.userNameSignup;
+      const passwordSignup = this.props.location.state.passwordSignup;
+      fetch('/api/user/signup', {
+          method: 'POST',
+          headers: {'Content-Type' : 'application/json'},
+          body: JSON.stringify({userName: userNameSignup, password: passwordSignup})
+      })
+      .catch((err) => {
+          if (err) {console.log('err in signup createUser post')}
+      })
+  };
 
   render () {
-    // let userName = this.props.location.state.userName;
-    // let password = this.props.location.state.password;
+    let userName = this.props.location.state.userNameLogin || this.props.location.state.userNameSignup;  
+    let password = this.props.location.state.passwordLogin || this.props.location.state.passwordSignup; 
     let { classes } = this.props
-    let value = this.setState.value
+    let value = this.state.value
+
     return (
       <div className='profilePage'>
         <div className="profileHeader">
@@ -140,7 +117,6 @@ class Profile extends Component {
         <Typography>Your Profile</Typography>
 
         <div className={classes.root}>
-          {/* <Paper > */}
           <Tabs
               orientation="vertical"
               variant="scrollable"
@@ -149,26 +125,48 @@ class Profile extends Component {
               aria-label="Vertical tabs example"
               className={classes.tabs}
             >
-              <Tab label="Item One" {...a11yProps(0)} />
-              <Tab label="Item Two" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
+              <Tab label="Kyodie Community" {...a11yProps(0)} />
+              <Tab label="Recent Searches" {...a11yProps(1)} />
+              <Tab label="Favorite Businesses" {...a11yProps(2)} />
             </Tabs>
             <TabPanel value={value} index={0}>
-              Item One
+            <Typography>Post comments and questions in the community forum</Typography> <br></br>
+              <Button
+                className={classes.IconButton}
+                size='medium'
+                p={5}
+                variant="outlined" 
+                color="inherit" 
+                component={Link}
+                to={{
+                  pathname: '/api/forum/:id', 
+                  state:{userName: userName, password: password}
+                }}>
+                Forum
+              </Button>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              Item Two
+            <Typography>View Your Most Recent Searches</Typography> <br></br>
+            <Button
+              className={classes.IconButton}
+              size='medium'
+              p={5}
+              variant="outlined" 
+              color="inherit" >
+              Most Searches
+            </Button>
             </TabPanel>
             <TabPanel value={value} index={2}>
-              Item Three
+            <Typography>View the Businesses you liked the most</Typography> <br></br>
+            <Button
+              className={classes.IconButton}
+              size='medium'
+              p={5}
+              variant="outlined" 
+              color="inherit" >
+              Favs 
+            </Button>
             </TabPanel>
-          {/* </Paper> */}
-            {/* 
-              <Link to={{
-                  pathname:'/api/forum/:id', 
-                  state: {userName: userName, password: password}
-                  }}> <button>Go To Forum</button> </Link>
-              <button>See All Favs</button> */}
         </div>
         <Footer/>
       </div>

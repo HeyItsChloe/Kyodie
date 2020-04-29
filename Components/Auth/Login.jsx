@@ -31,13 +31,19 @@ class Login extends Component {
             passwordLogin: '',
             loggingIn: false
         };
-       this.getUserInput = this.getUserInput.bind(this);
+       this.getUserPass = this.getUserPass.bind(this);
+       this.getUserName = this.getUserName.bind(this);
     }; 
     
-    getUserInput (event) {
+    getUserName (event) {
         //add these keys to the textfields? as classnames? or give each field its own onClick?
         this.setState({
-            userNameLogin: event.taeget.value, //document.getElementById('userName').value,
+            userNameLogin: event.target.value, //document.getElementById('userName').value,
+        });
+    };
+    getUserPass (event) {
+        //add these keys to the textfields? as classnames? or give each field its own onClick?
+        this.setState({
             passwordLogin: event.target.value, //document.getElementById('password').value,
             loggingIn: true
         });
@@ -48,6 +54,7 @@ class Login extends Component {
         let userNameLogin = this.state.userNameLogin;
         let passwordLogin = this.state.passwordLogin;
         let { classes } = this.props
+        console.log('in login', userNameLogin, passwordLogin)
         return (
             <div className='loginPage'>
                 {/* change header color */}
@@ -65,13 +72,15 @@ class Login extends Component {
                         id="outlined-basic"
                         label="Enter User Name"
                         variant="outlined"
-                        onChange={this.getUserInput} />     
+                        value={userNameLogin}
+                        onChange={this.getUserName} />     
                         <TextField
                         required
                         id="outlined-basic"
                         label="Enter Password"
                         variant="outlined"
-                        onChange={this.getUserInput} /> <br></br>
+                        value={passwordLogin}
+                        onChange={this.getUserPass} /> <br></br>
 
                         {/* pass state here */}
                         <Button 
@@ -80,8 +89,11 @@ class Login extends Component {
                         variant="outlined" 
                         color="inherit" 
                         component={Link}
-                        to='/profile'>
-                            Login
+                        to={{
+                            pathname:'/profile', 
+                            state:{userNameLogin: userNameLogin, passwordLogin:passwordLogin, loggingIn:loggingIn}
+                        }}>
+                        Login
                         </Button>   
                     </div>
 

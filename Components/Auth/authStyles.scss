@@ -3,20 +3,25 @@
     height: 100%;
 }
 
-.signupPage {
-    background-color: yellowgreen;
-    height: 100%; 
-}
-
 .signupArea {
     position: fixed;
     bottom: 100;
     display: flex;
 }
 
+.signupPage {
+    background-color: yellowgreen;
+    height: 100%; 
+}
+
 .profilePage {
     background-color: peru;
     height: 100%;  
+}
+
+.forumPage {
+    background-color: plum;
+    height: 100%;    
 }
 
 input {

@@ -55,6 +55,7 @@ class ResultsPage extends Component {
     };
 
     render () {
+        console.log('state in results page', this.props.location.state)
         return (
             <div className='resultsPage'>
                 <Header/>

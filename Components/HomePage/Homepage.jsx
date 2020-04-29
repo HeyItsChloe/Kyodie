@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
+import { Typography, withStyles, Paper, Slide } from '@material-ui/core';
 import SearchBar from '../SearchBar.jsx';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
-import { Typography } from '@material-ui/core';
-import Profile from '../Auth/Profile.jsx'
-import Paper from '@material-ui/core/Paper';
-import Slide from '@material-ui/core/Slide';
-import { withStyles } from '@material-ui/core/styles';
 
 const styles =(theme) => ({
   paper: {
@@ -61,7 +57,6 @@ class Homepage extends Component {
                         </div>
                     </div>
                     <div className='searchFormHome'>
-                        <Profile/>
                     <SearchBar/>
                     </div>
                     <Footer/>

@@ -25,13 +25,20 @@ class SignUp extends Component {
             userNameSignup: '',
             passwordSignup: ''
         };
-        this.getUserInput = this.getUserInput.bind(this);
+        this.getUserName = this.getUserName.bind(this);
+        this.getUserPass = this.getUserPass.bind(this)
     };
 
-    getUserInput () {
+    getUserName (event) {
+        //add these keys to the textfields? as classnames? or give each field its own onClick?
         this.setState({
-            userNameSignup: document.getElementById('userName').value,
-            passwordSignup: document.getElementById('password').value,
+            userNameSignup: event.target.value, //document.getElementById('userName').value,
+        });
+    };
+    getUserPass (event) {
+        //add these keys to the textfields? as classnames? or give each field its own onClick?
+        this.setState({
+            passwordSignup: event.target.value, //document.getElementById('password').value,
             signingUp: true
         });
     };
@@ -58,13 +65,15 @@ class SignUp extends Component {
                         id="outlined-basic"
                         label="Enter User Name"
                         variant="outlined"
-                        onChange={this.getUserInput} />     
+                        value={userNameSignup}
+                        onChange={this.getUserName} />     
                         <TextField
                         required
                         id="outlined-basic"
                         label="Enter Password"
                         variant="outlined"
-                        onChange={this.getUserInput} /> <br></br>
+                        value={passwordSignup}
+                        onChange={this.getUserPass} /> <br></br>
 
                         {/* pass state here */}
                         <Button 
@@ -73,8 +82,11 @@ class SignUp extends Component {
                         variant="outlined" 
                         color="inherit" 
                         component={Link}
-                        to='/profile'>
-                            SignUp
+                        to={{
+                            pathname:'/profile', 
+                            state: {userNameSignup: userNameSignup, passwordSignup:passwordSignup, signingUp:signingUp}
+                            }}>
+                        SignUp
                         </Button>   
                     </div>
                 </form>
