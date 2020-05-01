@@ -74,7 +74,11 @@ const styles = theme => ({
             <div className={classes.root}>
                 <AppBar position="static" className={classes.appBar} >
                     <Toolbar>
-                        <Typography variant="h6" className={classes.title} >
+                        <Typography 
+                            variant="h6" 
+                            className={classes.title} 
+                            component={Link}
+                            to='/'> 
                             KYODIE
                         </Typography>
                         <IconButton 

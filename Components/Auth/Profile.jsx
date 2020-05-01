@@ -4,6 +4,7 @@ import { Tabs, Tab, withStyles, Typography, Box, Button } from '@material-ui/cor
 import PropTypes from 'prop-types';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
+import authStyles from '../Auth/authStyles.scss';
 
 /* Helper Functions For the Vertical MUI Tabs */
 function TabPanel(props) {

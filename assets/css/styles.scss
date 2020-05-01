@@ -48,9 +48,51 @@
   margin-left: 25%;
   margin-right: 25%;
   // padding: 0px 8px 0px 8px;
-  
 }
 
+.searchFormHome {
+  color: navy;
+}
+
+.resultsPage {
+  background-color: plum;
+}
+
+.resultsContainer {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.resultsTitle {
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.resultsDetails {
+  background-color: powderblue;
+  height: 100%;
+
+}
+
+.resultsDetailsCard {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.resultsDetailsTitle {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.searchFormResults {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
 
 .search {
   .searchFields {

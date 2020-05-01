@@ -1,13 +1,13 @@
-.forumPic {
-    width: 90%;
-    height: 100%;
-}
+// .forumPic {
+//     width: 90%;
+//     height: 100%;
+// }
 
-#comments {
-    margin-left: 20px;
-    margin-top: 20px;
-    box-shadow: 1px 1px 1px 1px #888888;
-}
+// #comments {
+//     margin-left: 20px;
+//     margin-top: 20px;
+//     box-shadow: 1px 1px 1px 1px #888888;
+// }
 
 .eachPost {
     border: 1px solid;
@@ -15,6 +15,23 @@
     margin: 10px;
 }
 
-#inputText {
+// #inputText {
+//     width: 70%;
+// }
+
+.commentCard {
     width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.commentCardTitle {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.forumPage {
+    background-color: salmon;
+    height: 100%;
 }

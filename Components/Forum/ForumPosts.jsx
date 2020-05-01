@@ -18,9 +18,9 @@ class ForumPosts extends Component {
         let eachPost = this.props.eachPost;
         return (
             <div>
-                <div> 
-                    <p>Title: {eachPost.title}</p>
-                    <p>Comment: {eachPost.comment}</p>
+                <div className='eachPost'> 
+                    <p><b>Title:</b> {eachPost.title}</p>
+                    <p><b>Comment:</b> {eachPost.comment}</p>
                     <button id='button' value={eachPost.commentId} onClick={(event) => this.deleteComment(event)} >Delete</button> 
                 </div>
             </div>

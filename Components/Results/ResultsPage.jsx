@@ -3,6 +3,8 @@ import ResultsContainer from './ResultsContainer.jsx';
 import axios from 'axios';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
+import { Typography } from '@material-ui/core';
+import SearchBar from '../SearchBar.jsx';
 
 class ResultsPage extends Component {
     constructor (props) {
@@ -59,10 +61,13 @@ class ResultsPage extends Component {
         return (
             <div className='resultsPage'>
                 <Header/>
-                <div className="header">
-                    <h1>Browse The Top Businesses</h1>
+                <div className='searchFormResults'>
+                    <SearchBar />
                 </div>
-                <div>
+                <div className="resultsTitle">
+                    <Typography variant="h6" >BROWSE THE TOP BUSINESSES</Typography> <br></br>
+                </div>
+                <div className='resultsContainer'>
                     <ResultsContainer propsPassed={this.state.data}/>
                 </div>
                 <Footer/>
