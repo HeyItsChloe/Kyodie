@@ -13,11 +13,15 @@
     border: 1px solid;
     box-shadow: 1px 1px 5px 1px #888888;
     margin: 10px;
+    button {
+        background-color: transparent;
+    }
 }
 
 // #inputText {
 //     width: 70%;
 // }
+
 
 .commentCard {
     width: 70%;
