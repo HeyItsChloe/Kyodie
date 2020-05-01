@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Typography, withStyles, Paper, Slide } from '@material-ui/core';
+import { Typography, withStyles, Paper } from '@material-ui/core';
 import SearchBar from '../SearchBar.jsx';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
@@ -11,6 +11,7 @@ const styles =(theme) => ({
     margin: theme.spacing(3),
     backgroundColor: 'transparent',
     boxShadow: "none",
+    color: 'gold'
   },
 });
 
@@ -34,26 +35,17 @@ class Homepage extends Component {
         let { classes } = this.props
         let checked = this.state.checked
         return (
-            <div className='homepage' onWheel={this.handleChange}>
+            <div className='homepage'>
                 <div>
                     <Header/>
                     <div>
                         <div>
-                            <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
                             <Paper elevation={4} className={classes.paper}>
-                                <Typography variant="h1">
-                                    Text 1
-                                </Typography>
+                                <div className='hompageText'>
+                                    <b>SEARCH FOR <br></br> ANY  
+                                     BUSINESS NEAR YOU </b>
+                                </div>
                             </Paper>  
-                            </Slide>
-
-                            <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
-                            <Paper elevation={4} className={classes.paper}>
-                                <Typography variant="h1">
-                                    Text 2
-                                </Typography>
-                            </Paper>
-                            </Slide>
                         </div>
                     </div>
                     <div className='searchFormHome'>
