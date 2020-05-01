@@ -5,7 +5,7 @@ import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
 
 const styles =(theme) => ({
-  paper: {
+    hompageText: {
     zIndex: 1,
     position: 'relative',
     margin: theme.spacing(3),
@@ -16,36 +16,18 @@ const styles =(theme) => ({
 });
 
 class Homepage extends Component {
-    constructor (props) {
-        super (props)
-        this.state = {
-            checked: false
-        }
-        this.handleChange = this.handleChange.bind(this);
-    };
-
-    handleChange () {
-        let checkedIt = !this.state.checked
-        this.setState({
-            checked: checkedIt
-        })    
-    }
-
     render () {
         let { classes } = this.props
-        let checked = this.state.checked
         return (
             <div className='homepage'>
                 <div>
                     <Header/>
                     <div>
-                        <div>
-                            <Paper elevation={4} className={classes.paper}>
-                                <div className='hompageText'>
-                                    <b>SEARCH FOR <br></br> ANY  
-                                     BUSINESS NEAR YOU </b>
-                                </div>
-                            </Paper>  
+                        <div >
+                            <div className='hompageText'>
+                                <b> SEARCH FOR <br></br> 
+                                ANY BUSINESS NEAR YOU </b>
+                            </div>
                         </div>
                     </div>
                     <div className='searchFormHome'>
