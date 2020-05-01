@@ -1,20 +1,26 @@
-.forumPic {
-    width: 90%;
-    height: 100%;
-}
-
-#comments {
-    margin-left: 20px;
-    margin-top: 20px;
-    box-shadow: 1px 1px 1px 1px #888888;
-}
-
 .eachPost {
     border: 1px solid;
     box-shadow: 1px 1px 5px 1px #888888;
     margin: 10px;
+    button {
+        background-color: transparent;
+    }
 }
 
-#inputText {
+.commentCard {
     width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.commentCardTitle {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    color: rgb(27, 20, 100);
+}
+
+.forumPage {
+    background-color: pink;
+    height: 100%;
 }

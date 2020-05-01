@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
+const styles = () => ({
+    bottomNav: {
+      backgroundColor: 'transparent',
+    }
+  });
 
 class Footer extends Component {
     render () {
+        let { classes } = this.props
         return (
             <div className='pageFooter'>
-                <p className='text'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br></br><br></br>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                laboris nisi ut aliquip ex ea commodo consequat.             
-                </p>
-                <div>
-                    <ul className='socialMedia'>
-                        <li>Instagram</li>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                    </ul>
-                </div>
+                <BottomNavigation
+                    className={classes.bottomNav}>
+                        <BottomNavigationAction label="Instagram" icon={<InstagramIcon />} />
+                        <BottomNavigationAction label="LinkedIn" icon={<LinkedInIcon />} />
+                        <BottomNavigationAction label="GitHub" icon={<GitHubIcon />} />
+                </BottomNavigation>
             </div>
         )
     }
 }
-export default Footer;
+export default withStyles(styles)(Footer);

@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 /* Assets */
 import '../css/styles.scss'; 
 import '../images/working_together.png';
+import 'typeface-roboto';
 /* Components */
 import App from '../../Components/App.jsx';
 import ResultsPage from '../../Components/Results/ResultsPage.jsx';
@@ -31,6 +32,8 @@ const routing = (
     </div>
   </Router>
 );
+
+
 
 render(
   <div>

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ResultsContainer from './ResultsContainer.jsx';
 import axios from 'axios';
-
+import Header from '../Header.jsx';
+import Footer from '../Footer.jsx';
+import { Typography } from '@material-ui/core';
+import SearchBar from '../SearchBar.jsx';
 
 class ResultsPage extends Component {
     constructor (props) {
@@ -54,14 +57,21 @@ class ResultsPage extends Component {
     };
 
     render () {
+        console.log('state in results page', this.props.location.state)
         return (
             <div className='resultsPage'>
-                <div className="header">
-                    <h1>Browse The Top Businesses</h1>
+                <Header/>
+                <div className="resultsTitle">
+                    <Typography variant="h4" >BROWSE THE TOP LOCAL BUSINESSES</Typography> <br></br>
                 </div>
-                <div>
+                <div className='searchFormResults'>
+                    <SearchBar />
+                </div>
+
+                <div className='resultsContainer'>
                     <ResultsContainer propsPassed={this.state.data}/>
                 </div>
+                <Footer/>
             </div>
         );
     };

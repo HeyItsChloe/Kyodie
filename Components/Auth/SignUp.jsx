@@ -2,7 +2,29 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
-import authStyles from './authStyles.scss';
+import { Typography } from '@material-ui/core';
+import { TextField, Button, withStyles } from '@material-ui/core';
+
+const styles = (theme) => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '19.2ch',
+            boxShadow: "7px 7px 7px black"
+
+          },
+        margin: theme.spacing(10),
+        color: 'hotpink',
+        textAlign: 'center',
+    },
+    text: {
+        fontSize: 60
+    },
+    button: {
+        backgroundColor: 'pink',
+        color: 'navy',
+    }
+  });
 
 class SignUp extends Component {
     constructor (props) {
@@ -12,13 +34,20 @@ class SignUp extends Component {
             userNameSignup: '',
             passwordSignup: ''
         };
-        this.getUserInput = this.getUserInput.bind(this);
+        this.getUserName = this.getUserName.bind(this);
+        this.getUserPass = this.getUserPass.bind(this)
     };
 
-    getUserInput () {
+    getUserName (event) {
+        //add these keys to the textfields? as classnames? or give each field its own onClick?
         this.setState({
-            userNameSignup: document.getElementById('userName').value,
-            passwordSignup: document.getElementById('password').value,
+            userNameSignup: event.target.value, //document.getElementById('userName').value,
+        });
+    };
+    getUserPass (event) {
+        //add these keys to the textfields? as classnames? or give each field its own onClick?
+        this.setState({
+            passwordSignup: event.target.value, //document.getElementById('password').value,
             signingUp: true
         });
     };
@@ -27,46 +56,49 @@ class SignUp extends Component {
         let signingUp = this.state.signingUp;
         let userNameSignup = this.state.userNameSignup;
         let passwordSignup = this.state.passwordSignup;
+        let { classes } = this.props
         return (
-            <div>
-                <div className='authHeader'>
+            <div className='signupPage'>
+                {/* change header color */}
+                <div className='signupHeader'>
                     <Header/>
                 </div>
-                <img className='backgroundImg'
-                    src={require('../../assets/images/ideas.jpg')}
-                    style={{width:'90%', height:'85%'}}
-                >
-                </img>
-                <form className='authForm'>
-                    <div className="container">
-                        <div>
-                            <h3>Create An Account</h3>
-                            <span>
-                                <img className='unameIcon'
-                                    src={require('../../assets/images/unameIcon.png')}
-                                    style={{width:'5%', height: '3%'}}>
-                                </img>
-                            </span>
-                            <input id='userName' placeholder='userName' name="uname" onChange={this.getUserInput}></input><br></br>
-                            <span>
-                                <img className='pswd'
-                                    src={require('../../assets/images/pswdIcon.png')}
-                                    style={{width:'5%', height: '3%'}}>
-                                </img>
-                            </span>                            
-                            <input id='password' type="password" placeholder='password' onChange={this.getUserInput}></input><br></br>
-                            <Link to={{
-                                    pathname:'/profile',
-                                    state: {userNameSignup: userNameSignup, passwordSignup:passwordSignup, signingUp:signingUp}
-                                    }}> <button className='authSubmit'>SignUp</button> </Link>  
-                        </div>
+
+                <form className={classes.root}>
+                    <div>
+                        <Typography className={classes.text}> CREATE AN ACCOUNT </Typography>
+                        <TextField
+                        required
+                        id="outlined-basic"
+                        label="Enter User Name"
+                        variant="outlined"
+                        value={userNameSignup}
+                        onChange={this.getUserName} />     
+                        <TextField
+                        required
+                        id="outlined-basic"
+                        label="Enter Password"
+                        variant="outlined"
+                        value={passwordSignup}
+                        onChange={this.getUserPass} /> <br></br> <br></br>
+                        <Button 
+                        className={classes.button}
+                        size='medium'
+                        p={5}
+                        variant="contained"
+                        color='inherit' 
+                        component={Link}
+                        to={{
+                            pathname:'/profile', 
+                            state: {userNameSignup: userNameSignup, passwordSignup:passwordSignup, signingUp:signingUp}
+                            }}>
+                        SignUp
+                        </Button>   
                     </div>
                 </form>
-                <div className='authFooter'>
-                    <Footer/>
-                </div>
+                <Footer/>
             </div>
         )
     }
 }
-export default SignUp;
+export default withStyles(styles)(SignUp);

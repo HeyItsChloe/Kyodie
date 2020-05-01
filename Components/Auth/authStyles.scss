@@ -1,63 +1,37 @@
+.loginPage {
+    background-color: rgb(133, 35, 205);
+    height: 100%;  
 
-.authForm {
-    border-style: solid;
-    border-color: navy;
-    margin-left: 35%;
-    margin-right:35%;
-    margin-top: 10%;
-    width: 30%;
-    text-align: center;
-    background-color: transparentize(navy, 0.5);
-    position: relative;
-    z-index: 2;
-    color: white;
-}
-
-input {
-    width: 70%;
-    height: 5%;
-    margin: 3px;
-}
-
-span {
-    background-color: peachpuff;
-    margin: 1px;  
-    padding: 5px;
-    .img {
-        margin-top: 15px;
-    }
-}
-
-.backgroundImg {
-    position: absolute;
-    z-index: 1;
-    margin-left: 5%;
-    margin-right:5%;
-}
-
-.authHeader {
-    position: relative;
-    z-index: 3;
-}
-
-.authFooter {
-	position: relative;
-    top: 250px;
-    z-index: 2;
-}
-
-.authSubmit {
-    width: 20%;
-    height: 5%;
-    margin-bottom: 40px;
 }
 
 .signupArea {
-    display: flex;
-    background-color: navy;
-    padding: 10px;
+    position: fixed;
+    bottom: 100;
 }
 
-.signupSubmit {
-    margin-left: 5px;;
+.signupPage {
+    background-color: yellowgreen;
+    height: 100%; 
+}
+
+.profilePage {
+    background-color: peru;
+    height: 100%;  
+}
+
+#profileTabs {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#profileTitle {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.forumPage {
+    background-color: plum;
+    height: 100%;    
 }
