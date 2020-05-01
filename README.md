@@ -3,7 +3,13 @@ Software engineering can seem daunting for beginners. There’s tons of articles
 
 This tutorial is meant to solve that very problem. Here, we will build a search directory web app for local businesses. The app will cover Javascript, Node.js, Express, React, React Router, MongoDB, Webpack, Sass/CSS, HTML and querying data from an API and from local storage. Because this is so much information, the tutorial will be broken into multiple parts.
 
-The tutorial will help complete an app that looks like the below:
+The tutorial will teach you how to complete an app that looks like the below:
 
 If you continue on to the version with advances styling using material-ui, your app will look like the below:
-<video src='./assets/kyodie_sitemap_video_mui.mov' width="320" height="200" controls preload></video>
+![](https://drive.google.com/file/d/1HofXm5QN5FoGgXY4zn3gedyk7uNln7C0/view?usp=sharing)
+![](https://drive.google.com/file/d/1c4bzNEp3HHPfdpNXvmAqnx8AcDNuyX0s/view?usp=sharing)
+![](https://drive.google.com/file/d/1aLw7AUti60L7bgCE-_iQjLY_Ecb7gVqs/view?usp=sharing)
+![](https://drive.google.com/file/d/1oObQJ4RVw62GMCZaXcbGlUVFzimw5o0W/view?usp=sharing)
+![](https://drive.google.com/file/d/1_9ZmNG1a3Wp1peflXX7_6khZPnrqgkOZ/view?usp=sharing)
+
+![](https://drive.google.com/file/d/1ligWruQ4zf_JQ0QoNG_BO4LZzCSbLDk8/view?usp=sharing)
