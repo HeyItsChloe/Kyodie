@@ -8,4 +8,4 @@ The tutorial will help complete an app that looks like the below:
 If you continue on to the version with advances styling using material-ui, your app will look like the below:
 https://drive.google.com/file/d/1ligWruQ4zf_JQ0QoNG_BO4LZzCSbLDk8/view?usp=sharing
 
-![]https://drive.google.com/file/d/1qI6eO1z5pykYk_vqx6bxGQydp0oo6NTj/view?usp=sharing
+![](https://drive.google.com/file/d/1qI6eO1z5pykYk_vqx6bxGQydp0oo6NTj/view?usp=sharing)
