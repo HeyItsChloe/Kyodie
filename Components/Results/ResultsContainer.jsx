@@ -12,7 +12,6 @@ class ResultsContainer extends Component {
         };
         return (
             <div className='resultsContainer'>
-                <h1>Browse The Top Businesses In Your Area</h1>
                 <div>
                 {resultArr}
                 </div>

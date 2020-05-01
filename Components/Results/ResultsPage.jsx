@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ResultsContainer from './ResultsContainer.jsx';
 import axios from 'axios';
-
+import Header from '../Header.jsx';
+import Footer from '../Footer.jsx';
 
 class ResultsPage extends Component {
     constructor (props) {
@@ -56,12 +57,14 @@ class ResultsPage extends Component {
     render () {
         return (
             <div className='resultsPage'>
+                <Header/>
                 <div className="header">
                     <h1>Browse The Top Businesses</h1>
                 </div>
                 <div>
                     <ResultsContainer propsPassed={this.state.data}/>
                 </div>
+                <Footer/>
             </div>
         );
     };

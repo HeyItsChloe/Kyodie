@@ -9,7 +9,6 @@ class Results extends Component {
         let data = this.props.business;
         return (
             <div>
-                <Header/>
                 <div className="resultBoxes">
                     <div>
                         <p>Name: {data[0]} </p>
@@ -26,7 +25,6 @@ class Results extends Component {
                         }}> <button>Show More Details</button> </Link> 
                     </div>
                 </div>
-                <Footer/>
             </div>
         );
     };
