@@ -16,7 +16,7 @@ const styleSheet = (theme) => ({
         color: 'grey',
         padding: theme.spacing(1.7),
         margin: theme.spacing(1.2),
-        backgroundColor: 'gold'
+        backgroundColor: '13635c'
     }
   });
 

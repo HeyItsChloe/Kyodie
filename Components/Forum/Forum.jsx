@@ -10,6 +10,8 @@ const styles = (theme) => ({
       height: 425,
       backgroundColor: 'transparent',
       overflow: "auto",
+      color: 'rgb(27, 20, 100)',
+      //boxShadow: "7px 7px 7px black",
     },
     form: {
         '& .MuiTextField-root': {
@@ -17,6 +19,8 @@ const styles = (theme) => ({
           width: '40ch',
         },
         backgroundColor: 'transparent',
+        color: 'rgb(27, 20, 100)',
+        //boxShadow: "7px 7px black",
       },
   });
 
@@ -100,7 +104,7 @@ class Forum extends Component {
                 <Header/>
                 <div className='commentCard'>
                     <div className='commentCardTitle'>
-                        <Typography variant='h6'>Post A Comment With The KYODIE Community</Typography>
+                        <Typography variant='h6'>Post A Comment With The KYODIE Community :)</Typography>
                     </div>
                     <Card className={classes.comments}>
                         <CardContent >
@@ -119,18 +123,20 @@ class Forum extends Component {
                                         label='Title Of Post'
                                         className='title'
                                         variant='outlined'
+                                        color='inherit'
                                         onChange={this.handleTitleChange} />
                                     <TextField
                                         id="outlined-multiline-static"
                                         value={comment}
                                         required
+                                        color='inherit'
                                         label='Comment'
                                         className='comment'
                                         variant='outlined'
                                         onChange={this.handleCommentChange} />
                                     <Button 
                                         size='medium'
-                                        p={5}
+                                        p={0}
                                         variant="outlined" 
                                         color="inherit" 
                                         onClick={this.postText} >

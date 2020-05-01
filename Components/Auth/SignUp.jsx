@@ -10,10 +10,19 @@ const styles = (theme) => ({
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
             width: '19.2ch',
+            boxShadow: "7px 7px 7px black"
+
           },
         margin: theme.spacing(10),
         color: 'hotpink',
         textAlign: 'center',
+    },
+    text: {
+        fontSize: 60
+    },
+    button: {
+        backgroundColor: 'pink',
+        color: 'navy',
     }
   });
 
@@ -57,9 +66,7 @@ class SignUp extends Component {
 
                 <form className={classes.root}>
                     <div>
-                        <Typography> CREATE AN ACCOUNT </Typography>
-                        
-                        {/* give each icon image? and make color pink*/}
+                        <Typography className={classes.text}> CREATE AN ACCOUNT </Typography>
                         <TextField
                         required
                         id="outlined-basic"
@@ -73,14 +80,13 @@ class SignUp extends Component {
                         label="Enter Password"
                         variant="outlined"
                         value={passwordSignup}
-                        onChange={this.getUserPass} /> <br></br>
-
-                        {/* pass state here */}
+                        onChange={this.getUserPass} /> <br></br> <br></br>
                         <Button 
+                        className={classes.button}
                         size='medium'
                         p={5}
-                        variant="outlined" 
-                        color="inherit" 
+                        variant="contained"
+                        color='inherit' 
                         component={Link}
                         to={{
                             pathname:'/profile', 

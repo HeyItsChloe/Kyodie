@@ -11,6 +11,8 @@ const styles = (theme) => ({
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
             width: '19.2ch',
+            backgroundColor: 'transparent',
+            boxShadow: "7px 7px 7px black"
           },
         margin: theme.spacing(10),
         color: 'pink',
@@ -20,6 +22,9 @@ const styles = (theme) => ({
         margin: theme.spacing(1),
         backgroundColor: 'pink',
         color: 'navy',
+    },
+    text: {
+        fontSize: 60
     }
   });
 
@@ -64,7 +69,7 @@ class Login extends Component {
 
                 <form className={classes.root}>
                     <div>
-                        <Typography> LOGIN TO YOUR ACCOUNT </Typography>
+                        <Typography className={classes.text}> LOGIN TO YOUR ACCOUNT </Typography>
                         
                         {/* give each icon image? and make color pink*/}
                         <TextField
@@ -80,7 +85,7 @@ class Login extends Component {
                         label="Enter Password"
                         variant="outlined"
                         value={passwordLogin}
-                        onChange={this.getUserPass} /> <br></br>
+                        onChange={this.getUserPass} /> <br></br> <br></br>
 
                         {/* pass state here */}
                         <Button 
@@ -100,8 +105,8 @@ class Login extends Component {
                     {/* make this font bigger and pass state here */}
                     <div className='signupArea'>
                         <Typography>
-                            No Account? Sign Up Here!
-                        </Typography>
+                            No Account? Sign Up Here! <br></br>
+                        </Typography> 
 
                         <Button 
                         className={classes.signup}

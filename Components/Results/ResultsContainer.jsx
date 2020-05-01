@@ -6,7 +6,9 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
   root: {
-    //flexGrow: 1,
+    boxShadow: "7px 7px 7px 7px black",
+    overflow: 'auto',
+    height: 400
   },
 });
 
@@ -24,7 +26,7 @@ class ResultsContainer extends Component {
         };
         return (
             <div>
-                <Grid container spacing={2} alignItems="center" justify="center">
+                <Grid className={classes.root} container spacing={2} alignItems="center" justify="center">
                     {resultArr}
                 </Grid>
             </div>

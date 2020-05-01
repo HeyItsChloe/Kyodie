@@ -1,12 +1,11 @@
 .loginPage {
-    background-color: blue;
+    background-color: rgb(133, 35, 205);
     height: 100%;
 }
 
 .signupArea {
     position: fixed;
     bottom: 100;
-    display: flex;
 }
 
 .signupPage {
@@ -19,56 +18,19 @@
     height: 100%;  
 }
 
+#profileTabs {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#profileTitle {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
 .forumPage {
     background-color: plum;
     height: 100%;    
 }
-
-// input {
-//     width: 70%;
-//     height: 5%;
-//     margin: 3px;
-// }
-
-// span {
-//     background-color: peachpuff;
-//     margin: 1px;  
-//     padding: 5px;
-//     .img {
-//         margin-top: 15px;
-//     }
-// }
-
-// .backgroundImg {
-//     position: absolute;
-//     z-index: 1;
-//     margin-left: 5%;
-//     margin-right:5%;
-// }
-
-// // .authHeader {
-// //     position: relative;
-// //     z-index: 3;
-// // }
-
-// .authFooter {
-// 	position: relative;
-//     top: 250px;
-//     z-index: 2;
-// }
-
-// .authSubmit {
-//     width: 20%;
-//     height: 5%;
-//     margin-bottom: 40px;
-// }
-
-// // .signupArea {
-// //     display: flex;
-// //     background-color: navy;
-// //     padding: 10px;
-// // }
-
-// .signupSubmit {
-//     margin-left: 5px;;
-// }

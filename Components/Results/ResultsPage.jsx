@@ -61,12 +61,13 @@ class ResultsPage extends Component {
         return (
             <div className='resultsPage'>
                 <Header/>
+                <div className="resultsTitle">
+                    <Typography variant="h4" >BROWSE THE TOP LOCAL BUSINESSES</Typography> <br></br>
+                </div>
                 <div className='searchFormResults'>
                     <SearchBar />
                 </div>
-                <div className="resultsTitle">
-                    <Typography variant="h6" >BROWSE THE TOP BUSINESSES</Typography> <br></br>
-                </div>
+
                 <div className='resultsContainer'>
                     <ResultsContainer propsPassed={this.state.data}/>
                 </div>

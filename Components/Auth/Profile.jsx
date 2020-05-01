@@ -45,10 +45,16 @@ const styles = (theme) => ({
     backgroundColor: 'transparent',
     display: 'flex',
     height: 224,
+    boxShadow: "7px 7px 7px black",
+    color: 'navy'
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
+  text: {
+    fontSize: 60,
+    color: 'navy'
+  }
 });
 
 
@@ -115,9 +121,9 @@ class Profile extends Component {
         <div className="profileHeader">
           <Header/>
         </div>
-        <Typography>Your Profile</Typography>
+        <Typography id='profileTitle' className={classes.text}> <u>Your Profile</u> </Typography>
 
-        <div className={classes.root}>
+        <div id='profileTabs' className={classes.root}>
           <Tabs
               orientation="vertical"
               variant="scrollable"

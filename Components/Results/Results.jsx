@@ -12,7 +12,7 @@ const styles = (theme) => ({
       width: 300,
       height: 180,
       backgroundColor: 'transparent',
-      boxShadow: "10px 10px 10px grey"
+      //boxShadow: "10px 10px 10px grey"
     },
   });
 

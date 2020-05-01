@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Profile from './Auth/Profile.jsx'
 import { withStyles } from '@material-ui/core/styles';
 import { MenuItem } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -25,11 +23,11 @@ const styles = theme => ({
       marginRight: theme.spacing(2),
     },
     closeButton: {
-        flexGrow: 1,
-        color: 'red'
+        color: 'navy',
     },
     menuItems: {
-        textAlign: 'center'
+        fontSize: 60
+
     },
     title: {
       flexGrow: 1,
@@ -37,11 +35,9 @@ const styles = theme => ({
     Popover: {
         width: '100%',
         height: '100%',
-        backgroundColor: 'navy',
+        backgroundColor: 'red',
         color: 'gold',
-        textAlign: 'right'
-        // maxHeight: 'none',
-        // maxWidth: 'none',  
+        textAlign: 'right',
     }
   });
 
@@ -99,7 +95,7 @@ const styles = theme => ({
                             open={Boolean(anchorEl)}
                             //onClose={this.handleClose}
                             >
-                            <IconButton onClick={this.handleClose}>
+                            <IconButton className={classes.closeButton} size='large' onClick={this.handleClose}>
                                 <CloseIcon/>
                             </IconButton>
                             <MenuItem 
