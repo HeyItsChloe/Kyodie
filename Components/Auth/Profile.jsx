@@ -7,7 +7,7 @@ class Profile extends Component {
     constructor (props) {
         super (props) 
         this.handleLogin = this.handleLogin.bind(this);
-        this.createUser = this.createUser.bind(this);
+        this.handleSignup = this.handleSignup.bind(this);
     }; 
 
     componentDidMount () {
@@ -15,24 +15,25 @@ class Profile extends Component {
             this.handleLogin();
         };
         if (this.props.location.state.signingUp === true) {
-            this.createUser();
+            this.handleSignup();
         };
     };
 
     handleLogin () {
         const userNameLogin = this.props.location.state.userNameLogin;
         const passwordLogin = this.props.location.state.passwordLogin;
+        console.log('hi', userNameLogin, passwordLogin)
         fetch('/api/user/login', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({userName: userNameLogin, password: passwordLogin})
         })
         .catch(() => { 
-            if (err) {console.log('err in signup createUser post')}
+            if (err) {console.log('err in profile handleLogin post')}
         })
     };
 
-    createUser () {
+    handleSignup () {
         const userNameSignup = this.props.location.state.userNameSignup;
         const passwordSignup = this.props.location.state.passwordSignup;
         fetch('/api/user/signup', {
@@ -41,7 +42,7 @@ class Profile extends Component {
             body: JSON.stringify({userName: userNameSignup, password: passwordSignup})
         })
         .catch((err) => {
-            if (err) {console.log('err in signup createUser post')}
+            if (err) {console.log('err in signup handleSignup post')}
         })
     };
 

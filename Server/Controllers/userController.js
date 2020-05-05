@@ -20,7 +20,7 @@ userController.verifyUser = (req, res, next) => {
   const { userName, password} = req.body;
   model.User.findOne({userName: userName, password: password}).exec()
   .then((data, err) => {
-      if (err) {
+      if (data === null) {
         console.log('user does not exist')
       } else {
         res.locals.auth = data;
